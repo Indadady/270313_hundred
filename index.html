@@ -39,7 +39,7 @@
         #map { height: 500px; width: 100%; border-radius: 1rem; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); z-index: 10; }
         .no-scrollbar::-webkit-scrollbar { display: none; }
         
-        /* Map Animations */
+        /* Map Animations (스마트가이드북 지도 원칙) */
         @keyframes popIn {
             0% { transform: scale(0); opacity: 0; }
             80% { transform: scale(1.2); opacity: 1; }
@@ -54,6 +54,10 @@
         
         /* Timeline */
         .timeline-dot { position: absolute; left: -25px; top: 4px; width: 16px; height: 16px; border-radius: 50%; border: 3px solid white; box-shadow: 0 0 0 2px var(--tw-ring-color); background-color: var(--tw-bg-color); }
+
+        /* Widget Scroller */
+        .weather-scroll { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 1rem; gap: 1rem; }
+        .weather-item { scroll-snap-align: start; min-width: 120px; }
 
         /* Print Styles */
         @media print {
@@ -286,7 +290,7 @@
                 <div class="text-center mb-8">
                     <span class="text-blue-600 font-black tracking-widest text-xs uppercase">ROUTING MAP</span>
                     <h2 class="text-3xl font-bold text-slate-800 mt-2">현지 일자별 동선 안내</h2>
-                    <p class="text-slate-500 mt-2 text-sm">일자별 버튼을 클릭하여 필리핀 현지에서의 이동 경로를 확인하세요.</p>
+                    <p class="text-slate-500 mt-2 text-sm">일자별 버튼을 클릭하여 필리핀 현지에서의 이동 경로와 주요 방문지(숙소, 나이트투어)를 확인하세요.</p>
                 </div>
 
                 <div class="flex flex-wrap justify-center gap-2 mb-6 px-2">
@@ -294,7 +298,8 @@
                     <button onclick="changeMapRoute('day1')" class="map-btn px-5 py-2 rounded-full border border-slate-300 bg-white text-slate-600 hover:bg-blue-50 text-sm font-bold transition">1일차</button>
                     <button onclick="changeMapRoute('day2')" class="map-btn px-5 py-2 rounded-full border border-slate-300 bg-white text-slate-600 hover:bg-blue-50 text-sm font-bold transition">2일차</button>
                     <button onclick="changeMapRoute('day3')" class="map-btn px-5 py-2 rounded-full border border-slate-300 bg-white text-slate-600 hover:bg-blue-50 text-sm font-bold transition">3일차</button>
-                    <button onclick="changeMapRoute('day4')" class="map-btn px-5 py-2 rounded-full border border-slate-300 bg-white text-slate-600 hover:bg-blue-50 text-sm font-bold transition">4/5일차</button>
+                    <button onclick="changeMapRoute('day4')" class="map-btn px-5 py-2 rounded-full border border-slate-300 bg-white text-slate-600 hover:bg-blue-50 text-sm font-bold transition">4일차</button>
+                    <button onclick="changeMapRoute('day5')" class="map-btn px-5 py-2 rounded-full border border-slate-300 bg-white text-slate-600 hover:bg-blue-50 text-sm font-bold transition">5/6일차</button>
                 </div>
 
                 <div class="max-w-5xl mx-auto border border-slate-200 rounded-2xl p-1 shadow-lg bg-white relative z-10">
@@ -323,7 +328,7 @@
                         <button class="tab-btn shrink-0 px-6 py-3 rounded-2xl border-2 border-slate-200 bg-white text-slate-500 font-bold text-sm transition hover:bg-blue-50" onclick="openTab(event, 'day2'); changeMapRoute('day2')">2일차 (목)</button>
                         <button class="tab-btn shrink-0 px-6 py-3 rounded-2xl border-2 border-slate-200 bg-white text-slate-500 font-bold text-sm transition hover:bg-blue-50" onclick="openTab(event, 'day3'); changeMapRoute('day3')">3일차 (금)</button>
                         <button class="tab-btn shrink-0 px-6 py-3 rounded-2xl border-2 border-slate-200 bg-white text-slate-500 font-bold text-sm transition hover:bg-blue-50" onclick="openTab(event, 'day4'); changeMapRoute('day4')">4일차 (토)</button>
-                        <button class="tab-btn shrink-0 px-6 py-3 rounded-2xl border-2 border-slate-200 bg-white text-slate-500 font-bold text-sm transition hover:bg-blue-50" onclick="openTab(event, 'day5'); changeMapRoute('day4')">5/6일차 (일)</button>
+                        <button class="tab-btn shrink-0 px-6 py-3 rounded-2xl border-2 border-slate-200 bg-white text-slate-500 font-bold text-sm transition hover:bg-blue-50" onclick="openTab(event, 'day5'); changeMapRoute('day5')">5/6일차 (일)</button>
                     </div>
 
                     <!-- Web Content -->
@@ -984,38 +989,67 @@
         }
 
         // --- 5. 지도 기능 (스마트가이드북 지도 5원칙 엄수) ---
-        // 국제선(ICN)을 제외하고 현지 동선만 표기하도록 수정 완료
         let map;
         let layerGroup;
         
+        // 대표님 지침에 맞춰 국제선 제거 및 호텔, 야간명소 좌표 정밀 추가
         const spots = {
             mnl: { coords: [14.5085, 121.0123], name: "마닐라 국제공항", icon: "🛬" },
-            angeles: { coords: [15.1449, 120.5887], name: "앙헬레스 (위더스호텔)", icon: "🏨" },
+            widus: { coords: [15.1888, 120.5266], name: "위더스 호텔 (클락/앙헬레스)", icon: "🏨" },
+            proxy: { coords: [16.1554, 119.9800], name: "프록시 호텔 (알라미노스)", icon: "🏨" },
             hundred: { coords: [16.2023, 120.0253], name: "헌드레드 아일랜드", icon: "🏝️" },
-            baguio: { coords: [16.4164, 120.5930], name: "바기오 고산도시", icon: "⛰️" }
+            lucap: { coords: [16.2020, 120.0270], name: "루캅 공원 (나이트투어)", icon: "🍻" },
+            mines: { coords: [16.4190, 120.6272], name: "마인스 뷰 덱", icon: "📸" },
+            ion: { coords: [16.4083, 120.5900], name: "아이온 호텔 (바기오)", icon: "🏨" },
+            burnham: { coords: [16.4124, 120.5939], name: "번햄파크 & SM몰 (나이트투어)", icon: "🌃" },
+            okada: { coords: [14.5165, 120.9785], name: "오카다 마닐라 (분수쇼)", icon: "⛲" }
         };
 
         const routes = {
-            all: { points: ['mnl', 'angeles', 'hundred', 'baguio'],
-                   lines: [
-                       { latlngs: [spots.mnl.coords, spots.angeles.coords, spots.hundred.coords], color: '#3b82f6' },
-                       { latlngs: [spots.hundred.coords, spots.baguio.coords], color: '#a855f7' },
-                       { latlngs: [spots.baguio.coords, spots.angeles.coords, spots.mnl.coords], color: '#f59e0b' }
-                   ]
+            all: { 
+                points: ['mnl', 'widus', 'proxy', 'hundred', 'lucap', 'mines', 'ion', 'burnham', 'okada'],
+                lines: [
+                    { latlngs: [spots.mnl.coords, spots.widus.coords], color: '#3b82f6' },
+                    { latlngs: [spots.widus.coords, spots.proxy.coords, spots.hundred.coords], color: '#10b981' },
+                    { latlngs: [spots.hundred.coords, spots.mines.coords, spots.ion.coords], color: '#8b5cf6' },
+                    { latlngs: [spots.ion.coords, spots.widus.coords, spots.okada.coords, spots.mnl.coords], color: '#f59e0b' }
+                ]
             },
-            day1: { points: ['mnl', 'angeles'], lines: [{ latlngs: [spots.mnl.coords, spots.angeles.coords], color: '#3b82f6' }] },
-            day2: { points: ['angeles', 'hundred'], lines: [{ latlngs: [spots.angeles.coords, spots.hundred.coords], color: '#3b82f6' }] },
-            day3: { points: ['hundred'], lines: [] },
-            day4: { points: ['hundred', 'baguio', 'angeles', 'mnl'], lines: [{ latlngs: [spots.hundred.coords, spots.baguio.coords, spots.angeles.coords, spots.mnl.coords], color: '#a855f7' }] }
+            day1: { 
+                points: ['mnl', 'widus'], 
+                lines: [{ latlngs: [spots.mnl.coords, spots.widus.coords], color: '#3b82f6' }] 
+            },
+            day2: { 
+                points: ['widus', 'proxy', 'lucap'], 
+                lines: [{ latlngs: [spots.widus.coords, spots.proxy.coords, spots.lucap.coords], color: '#10b981' }] 
+            },
+            day3: { 
+                points: ['proxy', 'hundred', 'lucap'], 
+                lines: [
+                    { latlngs: [spots.proxy.coords, spots.hundred.coords], color: '#10b981' },
+                    { latlngs: [spots.hundred.coords, spots.lucap.coords, spots.proxy.coords], color: '#34d399' }
+                ] 
+            },
+            day4: { 
+                points: ['proxy', 'mines', 'ion', 'burnham'], 
+                lines: [
+                    { latlngs: [spots.proxy.coords, spots.mines.coords, spots.ion.coords], color: '#8b5cf6' },
+                    { latlngs: [spots.ion.coords, spots.burnham.coords], color: '#c4b5fd' }
+                ] 
+            },
+            day5: { 
+                points: ['ion', 'widus', 'okada', 'mnl'], 
+                lines: [{ latlngs: [spots.ion.coords, spots.widus.coords, spots.okada.coords, spots.mnl.coords], color: '#f59e0b' }] 
+            }
         };
 
         function drawMap(routeKey) {
             if (!map || !layerGroup) return;
-            // 원칙 4: 탭전환 시 clearLayers 선행
+            // 스마트가이드북 원칙 4: 탭전환 시 clearLayers 선행
             layerGroup.clearLayers();
             const routeData = routes[routeKey];
             
-            // Draw Polylines with Animation (원칙 3) - 애니메이션 속도를 6초로 늦춤
+            // 스마트가이드북 원칙 3: Draw Polylines with Animation (선 애니메이션 속도를 6초로 천천히 지정)
             routeData.lines.forEach((lineDef) => {
                 const polyline = L.polyline(lineDef.latlngs, { color: lineDef.color, weight: 4, opacity: 0.8 }).addTo(layerGroup);
                 setTimeout(() => {
@@ -1032,7 +1066,7 @@
                 }, 50);
             });
 
-            // Draw Markers (원칙 1, 5)
+            // 스마트가이드북 원칙 1 & 5: Draw Markers (JS transform 조작 금지, bindTooltip 적용)
             let currentBounds = L.latLngBounds();
             routeData.points.forEach((key, index) => {
                 const spot = spots[key];
@@ -1046,9 +1080,9 @@
                 currentBounds.extend(spot.coords);
             });
 
-            // Fit Bounds & Stabilization (원칙 2)
+            // 스마트가이드북 원칙 2: Fit Bounds & Stabilization (300ms 대기 후 invalidateSize)
             if(routeData.points.length > 0) {
-                map.fitBounds(currentBounds, { padding: [70, 70], maxZoom: 9 });
+                map.fitBounds(currentBounds, { padding: [70, 70], maxZoom: 10 });
                 setTimeout(() => { map.invalidateSize(); }, 300);
             }
         }
