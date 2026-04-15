@@ -59,6 +59,12 @@
         .weather-scroll { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 1rem; gap: 1rem; }
         .weather-item { scroll-snap-align: start; min-width: 120px; }
 
+        /* Custom Scrollbar for PC */
+        .custom-scrollbar::-webkit-scrollbar { height: 6px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: #f8fafc; border-radius: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+
         /* Print Styles */
         @media print {
             @page { size: A4 portrait; margin: 15mm 12mm; } 
@@ -228,25 +234,48 @@
             </div>
         </section>
 
-        <!-- 🌍 Overseas Widgets Section -->
+        <!-- 🌍 Overseas Widgets Section (Weather, Exchange, Price) -->
         <section id="widgets" class="py-16 bg-white border-t border-slate-200 overflow-hidden">
             <div class="container mx-auto px-4">
                 <div class="text-center mb-10">
                     <span class="text-indigo-600 font-black tracking-widest text-xs uppercase">LOCAL INFO</span>
                     <h2 class="text-3xl font-bold text-slate-800 mt-2">출국 전 필수 현지 정보</h2>
+                    <p class="text-sm text-slate-500 mt-2">고산지대(바기오)와 해안가(헌드레드 아일랜드)의 기온 차이를 꼭 확인하세요!</p>
                 </div>
 
-                <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-6">
-                    <!-- 1. 날씨 위젯 (스크롤 개선) -->
-                    <div class="bg-slate-50 rounded-3xl p-6 border border-slate-200 shadow-sm flex flex-col">
-                        <h3 class="font-bold text-lg text-slate-800 mb-4 flex items-center gap-2"><i class="fa-solid fa-cloud-sun text-indigo-500"></i> 바기오 7일 예보 (선선한 기후)</h3>
-                        <!-- 일주일치 위젯 스크롤 영역 -->
-                        <div id="weather-container" class="flex overflow-x-auto flex-nowrap pb-4 gap-3 no-scrollbar mb-2">
-                            <div class="flex items-center justify-center w-full h-24 text-slate-400 text-sm">날씨 정보를 불러오는 중...</div>
+                <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    
+                    <!-- 1. 듀얼 날씨 위젯 (헌드레드 아일랜드 vs 바기오) - 크게 강조 -->
+                    <div class="bg-slate-50 rounded-3xl p-6 border border-slate-200 shadow-sm flex flex-col lg:col-span-2">
+                        <h3 class="font-bold text-xl text-slate-800 mb-4 flex items-center gap-2">
+                            <i class="fa-solid fa-cloud-sun text-indigo-500"></i> 핵심 지역 7일 날씨 비교
+                        </h3>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-4 flex-1">
+                            <!-- 헌드레드 아일랜드 (열대 해안) -->
+                            <div class="bg-white p-5 rounded-2xl border border-blue-100 shadow-sm flex flex-col">
+                                <h4 class="font-bold text-blue-700 text-md mb-3 flex items-center gap-2">
+                                    🏝️ 헌드레드 아일랜드 <span class="text-xs font-normal text-slate-400 border border-slate-200 px-2 py-0.5 rounded-full">열대 해안 기후</span>
+                                </h4>
+                                <div id="weather-hundred" class="flex overflow-x-auto lg:grid lg:grid-cols-7 pb-2 gap-2 custom-scrollbar">
+                                    <div class="flex items-center justify-center w-full h-24 text-slate-400 text-sm">날씨 정보를 불러오는 중...</div>
+                                </div>
+                            </div>
+
+                            <!-- 바기오 (고산 지대) -->
+                            <div class="bg-white p-5 rounded-2xl border border-purple-100 shadow-sm flex flex-col">
+                                <h4 class="font-bold text-purple-700 text-md mb-3 flex items-center gap-2">
+                                    ⛰️ 바기오 <span class="text-xs font-normal text-slate-400 border border-slate-200 px-2 py-0.5 rounded-full">해발 1,500m 고산 기후</span>
+                                </h4>
+                                <div id="weather-baguio" class="flex overflow-x-auto lg:grid lg:grid-cols-7 pb-2 gap-2 custom-scrollbar">
+                                    <div class="flex items-center justify-center w-full h-24 text-slate-400 text-sm">날씨 정보를 불러오는 중...</div>
+                                </div>
+                            </div>
                         </div>
+
                         <div class="bg-white p-4 rounded-xl border border-slate-200 text-sm text-slate-600 leading-relaxed shadow-sm mt-auto">
-                            <p class="font-bold text-indigo-600 mb-1">💡 맞춤 옷차림 추천</p>
-                            마닐라 및 호핑투어 시에는 여름옷이 필수지만, <strong>바기오는 해발 1,500m 고산지대로 한국의 초가을 날씨</strong>와 비슷합니다. 얇은 긴팔, 가디건, 얇은 바람막이를 반드시 챙겨주세요!
+                            <p class="font-bold text-indigo-600 mb-1"><i class="fa-solid fa-shirt mr-1"></i> 지역별 맞춤 옷차림 추천</p>
+                            마닐라와 헌드레드 아일랜드(호핑투어)에서는 <strong>완벽한 한여름 옷차림</strong>이 필요하지만, 필리핀의 여름 수도인 바기오는 한국의 <strong>초가을 날씨(약 15~24도)</strong>와 비슷하여 밤낮 기온차가 매우 큽니다. 감기 예방을 위해 <strong>가을용 긴팔, 가디건, 얇은 바람막이</strong>를 캐리어에 반드시 챙겨주세요!
                         </div>
                     </div>
 
@@ -894,32 +923,41 @@
         badge.classList.remove('hidden');
 
         // --- 2. 해외 위젯 (날씨, 환율, 물가) 로직 ---
-        // 2-1. 날씨 (Baguio)
-        fetch('https://api.open-meteo.com/v1/forecast?latitude=16.4164&longitude=120.5930&daily=weathercode,temperature_2m_max,temperature_2m_min&timezone=Asia%2FManila')
-            .then(res => res.json())
-            .then(data => {
-                const container = document.getElementById('weather-container');
-                container.innerHTML = '';
-                const wmoCodes = { 0:'☀️', 1:'🌤️', 2:'⛅', 3:'☁️', 45:'🌫️', 48:'🌫️', 51:'🌧️', 53:'🌧️', 55:'🌧️', 61:'🌧️', 63:'🌧️', 65:'🌧️', 80:'🌦️', 81:'🌦️', 82:'🌧️', 95:'🌩️' };
-                
-                data.daily.time.forEach((dateStr, idx) => {
-                    const code = data.daily.weathercode[idx];
-                    const max = Math.round(data.daily.temperature_2m_max[idx]);
-                    const min = Math.round(data.daily.temperature_2m_min[idx]);
-                    const emoji = wmoCodes[code] || '☁️';
-                    const d = new Date(dateStr);
-                    const dayName = ['일','월','화','수','목','금','토'][d.getDay()];
+        
+        // 날씨 API 호출 및 UI 렌더링 함수
+        const fetchWeather = (lat, lon, containerId) => {
+            fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&daily=weathercode,temperature_2m_max,temperature_2m_min&timezone=Asia%2FManila`)
+                .then(res => res.json())
+                .then(data => {
+                    const container = document.getElementById(containerId);
+                    container.innerHTML = '';
+                    const wmoCodes = { 0:'☀️', 1:'🌤️', 2:'⛅', 3:'☁️', 45:'🌫️', 48:'🌫️', 51:'🌧️', 53:'🌧️', 55:'🌧️', 61:'🌧️', 63:'🌧️', 65:'🌧️', 80:'🌦️', 81:'🌦️', 82:'🌧️', 95:'🌩️' };
                     
-                    container.innerHTML += `
-                        <div class="weather-item bg-white p-3 rounded-xl border border-slate-200 text-center shadow-sm min-w-[100px]">
-                            <div class="text-xs text-slate-500 font-bold mb-1">${d.getMonth()+1}/${d.getDate()}(${dayName})</div>
-                            <div class="text-3xl mb-1">${emoji}</div>
-                            <div class="text-sm font-bold text-slate-700">${max}° <span class="text-slate-400 text-xs">${min}°</span></div>
-                        </div>
-                    `;
+                    data.daily.time.forEach((dateStr, idx) => {
+                        const code = data.daily.weathercode[idx];
+                        const max = Math.round(data.daily.temperature_2m_max[idx]);
+                        const min = Math.round(data.daily.temperature_2m_min[idx]);
+                        const emoji = wmoCodes[code] || '☁️';
+                        const d = new Date(dateStr);
+                        const dayName = ['일','월','화','수','목','금','토'][d.getDay()];
+                        
+                        container.innerHTML += `
+                            <div class="weather-item bg-slate-50 p-2 rounded-xl border border-slate-200 text-center shadow-sm min-w-[65px] lg:min-w-0">
+                                <div class="text-[10px] text-slate-500 font-bold mb-1">${d.getMonth()+1}/${d.getDate()}(${dayName})</div>
+                                <div class="text-2xl mb-1">${emoji}</div>
+                                <div class="text-xs font-bold text-slate-700">${max}° <span class="text-slate-400 font-normal">${min}°</span></div>
+                            </div>
+                        `;
+                    });
+                }).catch(() => { 
+                    document.getElementById(containerId).innerHTML = '<div class="text-xs text-slate-400 p-2">날씨 정보를 불러올 수 없습니다.</div>'; 
                 });
-            }).catch(() => { document.getElementById('weather-container').innerHTML = '<div class="text-sm text-slate-400 p-4">날씨 정보를 불러올 수 없습니다.</div>'; });
+        };
 
+        // 바기오와 헌드레드 아일랜드 날씨 각각 호출
+        fetchWeather(16.1554, 119.9800, 'weather-hundred'); // 헌드레드 아일랜드 (알라미노스)
+        fetchWeather(16.4164, 120.5930, 'weather-baguio');  // 바기오
+        
         // 2-2. 환율 및 물가
         let krwPerPhp = 25; // Fallback rate
         fetch('https://open.er-api.com/v6/latest/KRW')
