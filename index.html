@@ -1,0 +1,1146 @@
+<!DOCTYPE html>
+<html lang="ko" class="scroll-smooth">
+<head>
+    <!-- 🚨 Google Analytics (GA4) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-JLH9GD9SVR"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-JLH9GD9SVR');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>[투어메이커] 바기오 & 헌드레드 아일랜드 4박 6일 힐링 투어</title>
+    
+    <!-- SEO & Open Graph -->
+    <meta name="description" content="매일 마사지가 포함된 필리핀 마닐라, 바기오, 헌드레드 아일랜드 4박 6일 완벽 힐링 일정 안내서">
+    <meta property="og:title" content="[초대장] 바기오 & 헌드레드 아일랜드 힐링 투어">
+    <meta property="og:description" content="고객님을 위한 4박 6일 맞춤형 스마트 가이드북입니다. 상세 일정과 여행 준비물을 확인하세요!">
+    <meta property="og:image" content="https://images.openai.com/static-rsc-4/gc6trMA2GgmfDbybD5OALfH2GpcHLYpK0TbfOmPrjgilDAGrtN7Yw9tpVQDd9xmCGGpNwAAuWrhiluHeNtJLauM9H8zsWq5sZldymOkqh-1U7uvCSobaIPMnE0co5YXm23sCckz3vPZYRVGcUPV3XZJJN8sMPgOVCZTUvY1thAncJzIKxT8PwFXVgDtuRvG-?purpose=fullsize">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Leaflet CSS (Map) -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Nanum+Myeongjo:wght@700&display=swap" rel="stylesheet">
+    <!-- FontAwesome -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+
+    <style>
+        body { font-family: 'Noto Sans KR', sans-serif; background-color: #f8fafc; color: #1e293b; }
+        .hero-bg { 
+            background: linear-gradient(rgba(0, 30, 60, 0.5), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1518509562904-e7ef99cdcc86?q=80&w=1920&auto=format&fit=crop');
+            background-size: cover; background-position: center; background-attachment: fixed;
+        }
+        @media (max-width: 768px){ .hero-bg { background-attachment: scroll; } }
+        #map { height: 500px; width: 100%; border-radius: 1rem; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); z-index: 10; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        
+        /* Map Animations */
+        @keyframes popIn {
+            0% { transform: scale(0); opacity: 0; }
+            80% { transform: scale(1.2); opacity: 1; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        .leaflet-tooltip { font-weight: bold; font-family: 'Noto Sans KR', sans-serif; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); border: none; }
+        
+        /* Common Animations */
+        .animate-fade-in-up { animation: fadeInUp 0.8s ease-out forwards; }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        section { scroll-margin-top: 80px; }
+        
+        /* Timeline */
+        .timeline-dot { position: absolute; left: -25px; top: 4px; width: 16px; height: 16px; border-radius: 50%; border: 3px solid white; box-shadow: 0 0 0 2px var(--tw-ring-color); background-color: var(--tw-bg-color); }
+
+        /* Print Styles */
+        @media print {
+            @page { size: A4 portrait; margin: 15mm 12mm; } 
+            body { background-color: white !important; font-size: 10pt; color: black !important; }
+            a[href]:after { content: none !important; }
+            * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+            table { width: 100%; border-collapse: collapse; border: 2px solid #1e293b; }
+            #print-area > table > thead > tr > th { padding: 6px 4px; border: 1px solid #1e293b; background-color: #f8fafc !important; }
+            #print-area > table > tbody > tr > td { border: 1px solid #1e293b; border-bottom: 2px solid #1e293b !important; }
+            #print-area table table td { border: none !important; padding: 0; }
+            #print-area table table td:first-child { border-right: 1px solid #1e293b !important; }
+            .print-hidden { display: none !important; }
+        }
+    </style>
+</head>
+<body class="antialiased pb-20 md:pb-0 print:pb-0 print:bg-white">
+
+    <!-- Web Content (Hidden on Print) -->
+    <div class="print:hidden">
+        
+        <!-- Header -->
+        <header class="bg-white/95 backdrop-blur-md shadow-md sticky top-0 z-50 transition-all duration-300 border-b-2 border-blue-600">
+            <nav class="container mx-auto px-4 h-16 flex items-center justify-between">
+                <div class="flex items-center gap-3 shrink-0">
+                    <a href="http://tourmaker.kr" target="_blank">
+                        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgHfgIX70O5k6Anuo0UgALIdaG9jSga9auHu3uyz0uEirylGPAJnjN_qQbvEGMUvPqUQf_g9FMNUHRxlDcUBf4vZ3Mpy4TnA9WxbmzWYK11gt2zuy_Irl4wctNFjcjLyPo0GPXV792o_J7L9guRMuDfeC1gy7USwywjYbECZgzcsHybuGRRAXAnO1eNmP8/s320/logo.png" alt="Tourmaker" class="h-8">
+                    </a>
+                    <span id="d-day-badge" class="hidden text-white text-[10px] px-2 py-0.5 rounded-full font-bold"></span>
+                </div>
+                
+                <div class="flex-1 overflow-x-auto no-scrollbar ml-4 md:ml-8">
+                    <div class="flex items-center space-x-1 md:space-x-6 whitespace-nowrap pr-4">
+                        <a href="#home" class="px-3 py-2 text-sm font-bold text-slate-600 hover:text-blue-600 rounded-lg">홈</a>
+                        <a href="#highlights" class="px-3 py-2 text-sm font-bold text-blue-600 hover:bg-blue-50 rounded-lg"><i class="fa-solid fa-star mr-1"></i>핵심포인트</a>
+                        <a href="#video" class="px-3 py-2 text-sm font-medium text-slate-600 hover:text-blue-600 rounded-lg">명소영상</a>
+                        <a href="#flight" class="px-3 py-2 text-sm font-medium text-slate-600 hover:text-blue-600 rounded-lg">항공편</a>
+                        <a href="#widgets" class="px-3 py-2 text-sm font-medium text-slate-600 hover:text-blue-600 rounded-lg">현지정보</a>
+                        <a href="#map-section" class="px-3 py-2 text-sm font-medium text-slate-600 hover:text-blue-600 rounded-lg">동선지도</a>
+                        <a href="#schedule" class="px-3 py-2 text-sm font-bold text-blue-600 hover:bg-slate-50 rounded-lg"><i class="fa-solid fa-calendar-check mr-1"></i>상세일정</a>
+                        <a href="#accommodations" class="px-3 py-2 text-sm font-bold text-indigo-600 hover:bg-indigo-50 rounded-lg"><i class="fa-solid fa-bed mr-1"></i>호텔안내</a>
+                        <a href="#check" class="px-3 py-2 text-sm font-medium text-slate-600 hover:text-blue-600 rounded-lg">준비물&메모</a>
+                    </div>
+                </div>
+                <button onclick="shareLink()" class="shrink-0 p-2 text-slate-500 hover:text-blue-600 ml-2" title="일정표 공유하기"><i class="fa-solid fa-share-nodes text-xl"></i></button>
+            </nav>
+        </header>
+
+        <!-- Hero Section -->
+        <section id="home" class="hero-bg min-h-[65vh] flex items-center justify-center text-center px-4 relative">
+            <div class="animate-fade-in-up text-white w-full max-w-4xl flex flex-col items-center z-10">
+                <span class="bg-blue-600/90 text-white px-6 py-2 rounded-full text-sm md:text-base font-bold mb-6 inline-block border border-white/20 shadow-lg tracking-widest">
+                    <i class="fa-solid fa-spa mr-2"></i>Everyday Massage Day
+                </span>
+                <h1 class="text-3xl md:text-5xl lg:text-6xl font-bold mb-4 drop-shadow-2xl font-[Nanum Myeongjo] leading-tight">
+                    바기오 & 헌드레드 아일랜드<br>
+                    <span class="text-blue-300 font-bold text-3xl md:text-5xl mt-2 inline-block">완벽 힐링 투어</span>
+                </h1>
+                <div class="bg-black/50 backdrop-blur-md inline-block px-8 py-4 rounded-3xl mt-4 border border-white/10 shadow-2xl">
+                    <p id="hero-status-text" class="text-lg md:text-xl text-slate-100 font-medium tracking-wide mb-1">
+                        4박 6일간의 특별한 여정
+                    </p>
+                    <p class="text-lg text-blue-300 font-bold">2027.03.10(수) ~ 03.15(월)</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Highlights Section -->
+        <section id="highlights" class="py-16 bg-white -mt-8 rounded-t-3xl relative z-20 shadow-[0_-5px_20px_rgba(0,0,0,0.1)]">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-12">
+                    <span class="text-blue-600 font-black tracking-widest text-xs uppercase">TOUR HIGHLIGHTS</span>
+                    <h2 class="text-2xl md:text-3xl font-bold text-slate-800 mt-2">이번 여행의 3가지 핵심 포인트</h2>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+                    <div class="bg-blue-50 p-8 rounded-3xl border border-blue-100 shadow-sm hover:shadow-lg transition-all duration-300 group text-center">
+                        <div class="w-20 h-20 mx-auto bg-white rounded-full flex items-center justify-center mb-6 shadow-md group-hover:scale-110 transition-transform text-blue-600 text-3xl">💆‍♀️</div>
+                        <h3 class="text-xl font-bold text-slate-800 mb-3">1일 1마사지 (총 5회)</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed">전 일정 매일 90분 마사지가 포함되어 있습니다. 바쁜 일상을 떠나 여행의 피로를 그날그날 완벽하게 풀어드리는 힐링의 끝판왕!</p>
+                    </div>
+
+                    <div class="bg-emerald-50 p-8 rounded-3xl border border-emerald-100 shadow-sm hover:shadow-lg transition-all duration-300 group text-center">
+                        <div class="w-20 h-20 mx-auto bg-white rounded-full flex items-center justify-center mb-6 shadow-md group-hover:scale-110 transition-transform text-emerald-600 text-3xl">🏝️</div>
+                        <h3 class="text-xl font-bold text-slate-800 mb-3">헌드레드 아일랜드 호핑</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed">수많은 산호섬으로 이루어진 해상 국립공원! 바나나보트, 짚라인 등 짜릿한 액티비티와 투명한 바다를 온몸으로 만끽하세요.</p>
+                    </div>
+
+                    <div class="bg-purple-50 p-8 rounded-3xl border border-purple-100 shadow-sm hover:shadow-lg transition-all duration-300 group text-center">
+                        <div class="w-20 h-20 mx-auto bg-white rounded-full flex items-center justify-center mb-6 shadow-md group-hover:scale-110 transition-transform text-purple-600 text-3xl">⛰️</div>
+                        <h3 class="text-xl font-bold text-slate-800 mb-3">바기오 고산지대 투어</h3>
+                        <p class="text-slate-600 text-sm leading-relaxed">필리핀의 '여름 수도'라 불리는 선선한 기후의 바기오! 마인스 뷰덱의 절경과 번햄파크 야시장에서 로컬 문화를 탐험합니다.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Video Curation & Information -->
+        <section id="video" class="py-16 bg-slate-900 border-t border-slate-800">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-12 text-white">
+                    <span class="inline-block bg-white/20 text-white text-xs px-3 py-1 rounded-full font-bold mb-3 border border-white/30">DESTINATION INFO</span>
+                    <h2 class="text-3xl font-bold">🎬 한눈에 보는 핵심 여행지</h2>
+                    <p class="text-slate-400 text-sm mt-3">우리가 방문할 아름다운 명소의 영상을 미리 감상해 보세요.</p>
+                </div>
+                
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
+                    <!-- 헌드레드 아일랜드 -->
+                    <div class="bg-slate-800 rounded-3xl overflow-hidden border border-slate-700 shadow-xl flex flex-col">
+                        <div class="aspect-video relative bg-black">
+                            <iframe class="w-full h-full absolute top-0 left-0" src="https://www.youtube.com/embed/_B9HMSaw6hU?controls=1" title="Hundred Islands" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        </div>
+                        <div class="p-6 md:p-8 flex-1 flex flex-col">
+                            <h3 class="text-2xl font-bold text-emerald-400 mb-4">🏝️ 헌드레드 아일랜드 (Hundred Islands)</h3>
+                            <p class="text-slate-300 font-bold mb-4">"바다 위에 떠 있는 120여 개 섬 군집형 자연 국립공원"</p>
+                            <ul class="space-y-2 text-sm text-slate-400 flex-1">
+                                <li><span class="text-emerald-300 font-bold">📍 위치:</span> 필리핀 루손섬 북부, 팡가시난 주 알라미노스</li>
+                                <li><span class="text-emerald-300 font-bold">🌊 해역:</span> 링가옌 만 (Lingayen Gulf)</li>
+                                <li><span class="text-emerald-300 font-bold">🏝️ 섬 개수:</span> 밀물 시 123개 / 썰물 시 124개</li>
+                                <li><span class="text-emerald-300 font-bold">🗺️ 면적:</span> 약 16~18㎢ 규모</li>
+                                <li><span class="text-emerald-300 font-bold">🏆 지정:</span> 1940년 지정된 필리핀 최초의 국립공원</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- 바기오 -->
+                    <div class="bg-slate-800 rounded-3xl overflow-hidden border border-slate-700 shadow-xl flex flex-col">
+                        <div class="aspect-video relative bg-black">
+                            <iframe class="w-full h-full absolute top-0 left-0" src="https://www.youtube.com/embed/0QO88x3lJVc?controls=1" title="Baguio City" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        </div>
+                        <div class="p-6 md:p-8 flex-1 flex flex-col">
+                            <h3 class="text-2xl font-bold text-purple-400 mb-4">⛰️ 고산도시 바기오 (Baguio City)</h3>
+                            <ul class="space-y-2 text-sm text-slate-400 flex-1">
+                                <li><span class="text-purple-300 font-bold">🌤️ 여름 수도 (Summer Capital):</span> 연평균 18~22℃. 마닐라 대비 5~8도 낮아 일년 내내 선선하고 쾌적한 기후를 자랑합니다.</li>
+                                <li><span class="text-purple-300 font-bold">🌲 자연+도시 융합:</span> 해발 1,500m에 위치. 소나무 숲과 안개가 어우러진 독특한 풍경 속에 번햄파크, 마인즈뷰 등의 명소가 가득합니다.</li>
+                                <li><span class="text-purple-300 font-bold">🎓 교육·연수 특화:</span> 뛰어난 치안과 환경으로 필리핀 내 대표적인 학생 어학연수 및 국제교류 도시입니다.</li>
+                                <li><span class="text-purple-300 font-bold">🎨 문화·예술:</span> 다양한 로컬 시장과 공예품을 만날 수 있는 예술 중심 도시입니다.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Flight Information -->
+        <section id="flight" class="py-12 bg-slate-50 border-t border-slate-200">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-8">
+                    <span class="text-slate-500 font-black tracking-widest text-xs uppercase">FLIGHT SCHEDULE</span>
+                    <h2 class="text-3xl font-bold text-slate-800 mt-2">항공편 안내</h2>
+                </div>
+                <div class="max-w-4xl mx-auto mb-6">
+                    <div class="bg-white rounded-2xl border border-slate-200 shadow-md p-6">
+                        <div class="flex flex-col md:flex-row gap-6 justify-center items-center">
+                            <div class="bg-blue-50 border border-blue-100 rounded-xl p-5 w-full md:w-1/2 text-center relative overflow-hidden">
+                                <span class="text-xs bg-blue-600 text-white px-3 py-1 rounded-full font-bold mb-3 inline-block">출국 3.10(수)</span>
+                                <p class="font-black text-xl text-slate-800 mb-1">아시아나항공 OZ701</p>
+                                <p class="text-slate-600 font-medium text-lg">인천 07:35 <i class="fa-solid fa-arrow-right text-blue-400 mx-2"></i> 마닐라 10:40</p>
+                            </div>
+                            <div class="bg-slate-50 border border-slate-200 rounded-xl p-5 w-full md:w-1/2 text-center relative overflow-hidden">
+                                <span class="text-xs bg-slate-600 text-white px-3 py-1 rounded-full font-bold mb-3 inline-block">귀국 3.14(일) 밤 출발</span>
+                                <p class="font-black text-xl text-slate-800 mb-1">아시아나항공 OZ704</p>
+                                <p class="text-slate-600 font-medium text-lg">마닐라 23:50 <i class="fa-solid fa-arrow-right text-slate-400 mx-2"></i> 인천 05:00 (+1일)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 🌍 Overseas Widgets Section -->
+        <section id="widgets" class="py-16 bg-white border-t border-slate-200 overflow-hidden">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-10">
+                    <span class="text-indigo-600 font-black tracking-widest text-xs uppercase">LOCAL INFO</span>
+                    <h2 class="text-3xl font-bold text-slate-800 mt-2">출국 전 필수 현지 정보</h2>
+                </div>
+
+                <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-6">
+                    <!-- 1. 날씨 위젯 (스크롤 개선) -->
+                    <div class="bg-slate-50 rounded-3xl p-6 border border-slate-200 shadow-sm flex flex-col">
+                        <h3 class="font-bold text-lg text-slate-800 mb-4 flex items-center gap-2"><i class="fa-solid fa-cloud-sun text-indigo-500"></i> 바기오 7일 예보 (선선한 기후)</h3>
+                        <!-- 일주일치 위젯 스크롤 영역 -->
+                        <div id="weather-container" class="flex overflow-x-auto flex-nowrap pb-4 gap-3 no-scrollbar mb-2">
+                            <div class="flex items-center justify-center w-full h-24 text-slate-400 text-sm">날씨 정보를 불러오는 중...</div>
+                        </div>
+                        <div class="bg-white p-4 rounded-xl border border-slate-200 text-sm text-slate-600 leading-relaxed shadow-sm mt-auto">
+                            <p class="font-bold text-indigo-600 mb-1">💡 맞춤 옷차림 추천</p>
+                            마닐라 및 호핑투어 시에는 여름옷이 필수지만, <strong>바기오는 해발 1,500m 고산지대로 한국의 초가을 날씨</strong>와 비슷합니다. 얇은 긴팔, 가디건, 얇은 바람막이를 반드시 챙겨주세요!
+                        </div>
+                    </div>
+
+                    <!-- 2. 실시간 환율 계산기 위젯 -->
+                    <div class="bg-slate-50 rounded-3xl p-6 border border-slate-200 shadow-sm flex flex-col">
+                        <h3 class="font-bold text-lg text-slate-800 mb-4 flex items-center gap-2"><i class="fa-solid fa-calculator text-emerald-500"></i> 실시간 환율 계산기 (PHP ⇄ KRW)</h3>
+                        <div class="flex-1 flex flex-col justify-center items-center py-4">
+                            <div class="text-4xl font-black text-slate-800 mb-1" id="exchange-rate">-- 원</div>
+                            <div class="text-slate-500 font-medium text-sm mb-6">1 필리핀 페소(PHP) 당</div>
+                            
+                            <div class="w-full bg-white p-5 rounded-2xl border border-emerald-200 shadow-sm flex flex-col gap-4">
+                                <div class="flex justify-between items-center bg-slate-50 p-3 rounded-lg border border-slate-200">
+                                    <span class="font-bold text-slate-600">페소 (PHP)</span>
+                                    <input type="number" id="php-input" value="1000" class="w-24 text-right bg-transparent outline-none font-black text-xl text-slate-800" oninput="updateCalculator()">
+                                </div>
+                                <div class="flex justify-center text-slate-300"><i class="fa-solid fa-arrow-down"></i></div>
+                                <div class="flex justify-between items-center bg-emerald-50 p-3 rounded-lg border border-emerald-100">
+                                    <span class="font-bold text-emerald-700">원화 (KRW)</span>
+                                    <span class="font-black text-xl text-emerald-600" id="exchange-calc">-- 원</span>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="text-[11px] text-slate-400 text-center mt-2">* 현찰 살 때 기준 송금 수수료 1.5%가 반영된 체감 환율입니다.</p>
+                    </div>
+
+                    <!-- 3. 현지 물가 위젯 -->
+                    <div class="bg-slate-50 rounded-3xl p-6 border border-slate-200 shadow-sm flex flex-col">
+                        <h3 class="font-bold text-lg text-slate-800 mb-2 flex items-center gap-2"><i class="fa-solid fa-wallet text-orange-500"></i> 체감 물가 가이드</h3>
+                        <p class="text-xs text-slate-500 mb-4">* 표기된 물가는 <strong>평균적인 관광지/매장 기준</strong>이며, 지역이나 매장에 따라 실제 가격과 차이가 있을 수 있습니다.</p>
+                        <div class="flex-1 space-y-3" id="price-container">
+                            <!-- JS Rendered -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Map Section (Domestic Routes Only) -->
+        <section id="map-section" class="py-12 bg-slate-50 border-t border-slate-200">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-8">
+                    <span class="text-blue-600 font-black tracking-widest text-xs uppercase">ROUTING MAP</span>
+                    <h2 class="text-3xl font-bold text-slate-800 mt-2">현지 일자별 동선 안내</h2>
+                    <p class="text-slate-500 mt-2 text-sm">일자별 버튼을 클릭하여 필리핀 현지에서의 이동 경로를 확인하세요.</p>
+                </div>
+
+                <div class="flex flex-wrap justify-center gap-2 mb-6 px-2">
+                    <button onclick="changeMapRoute('all')" class="map-btn active px-5 py-2 rounded-full border border-slate-300 bg-slate-800 text-white text-sm font-bold transition shadow-md">현지 전체여정</button>
+                    <button onclick="changeMapRoute('day1')" class="map-btn px-5 py-2 rounded-full border border-slate-300 bg-white text-slate-600 hover:bg-blue-50 text-sm font-bold transition">1일차</button>
+                    <button onclick="changeMapRoute('day2')" class="map-btn px-5 py-2 rounded-full border border-slate-300 bg-white text-slate-600 hover:bg-blue-50 text-sm font-bold transition">2일차</button>
+                    <button onclick="changeMapRoute('day3')" class="map-btn px-5 py-2 rounded-full border border-slate-300 bg-white text-slate-600 hover:bg-blue-50 text-sm font-bold transition">3일차</button>
+                    <button onclick="changeMapRoute('day4')" class="map-btn px-5 py-2 rounded-full border border-slate-300 bg-white text-slate-600 hover:bg-blue-50 text-sm font-bold transition">4/5일차</button>
+                </div>
+
+                <div class="max-w-5xl mx-auto border border-slate-200 rounded-2xl p-1 shadow-lg bg-white relative z-10">
+                    <div id="map"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 스마트 가이드북 상세일정 (풍부해진 설명 & 야간 블록) -->
+        <section id="schedule" class="py-16 bg-white border-t border-slate-200">
+            <div class="container mx-auto px-4">
+                <div class="max-w-5xl mx-auto">
+                    <div class="text-center mb-10 relative">
+                        <span class="inline-block bg-blue-100 text-blue-800 text-xs px-3 py-1 rounded-full font-bold shadow-sm mb-3">OFFICIAL ITINERARY</span>
+                        <h2 class="text-3xl font-bold text-slate-800">일자별 상세 일정표</h2>
+                        <p class="text-sm text-slate-500 mt-2">일정 종료 후 이어지는 나이트투어와 숙소 정보도 놓치지 마세요.</p>
+                        
+                        <button onclick="window.print()" class="mt-6 md:mt-0 md:absolute md:right-0 md:top-1/2 md:-translate-y-1/2 bg-slate-800 hover:bg-slate-700 text-white text-sm font-bold py-2.5 px-5 rounded-xl shadow-md transition-all flex items-center justify-center gap-2 mx-auto md:mx-0 active:scale-95 animate-pulse">
+                            <i class="fa-solid fa-print"></i> 일정표 인쇄하기
+                        </button>
+                    </div>
+
+                    <!-- Web Tabs -->
+                    <div class="flex overflow-x-auto no-scrollbar gap-2 mb-8 justify-start md:justify-center px-2 pb-2">
+                        <button class="tab-btn active shrink-0 px-6 py-3 rounded-2xl border-2 border-blue-600 bg-blue-600 text-white font-bold text-sm transition shadow-md" onclick="openTab(event, 'day1'); changeMapRoute('day1')">1일차 (수)</button>
+                        <button class="tab-btn shrink-0 px-6 py-3 rounded-2xl border-2 border-slate-200 bg-white text-slate-500 font-bold text-sm transition hover:bg-blue-50" onclick="openTab(event, 'day2'); changeMapRoute('day2')">2일차 (목)</button>
+                        <button class="tab-btn shrink-0 px-6 py-3 rounded-2xl border-2 border-slate-200 bg-white text-slate-500 font-bold text-sm transition hover:bg-blue-50" onclick="openTab(event, 'day3'); changeMapRoute('day3')">3일차 (금)</button>
+                        <button class="tab-btn shrink-0 px-6 py-3 rounded-2xl border-2 border-slate-200 bg-white text-slate-500 font-bold text-sm transition hover:bg-blue-50" onclick="openTab(event, 'day4'); changeMapRoute('day4')">4일차 (토)</button>
+                        <button class="tab-btn shrink-0 px-6 py-3 rounded-2xl border-2 border-slate-200 bg-white text-slate-500 font-bold text-sm transition hover:bg-blue-50" onclick="openTab(event, 'day5'); changeMapRoute('day4')">5/6일차 (일)</button>
+                    </div>
+
+                    <!-- Web Content -->
+                    <div class="bg-white rounded-3xl shadow-xl border border-slate-200 overflow-hidden">
+                        
+                        <!-- Day 1 -->
+                        <div id="day1" class="tab-content animate-fade-in-up p-6 md:p-10">
+                            <h3 class="font-bold text-2xl text-slate-800 mb-6 border-b pb-4"><i class="fa-solid fa-plane-arrival text-blue-600 mr-2"></i> 인천 출발 / 마닐라 도착 및 앙헬레스 이동</h3>
+                            <div class="relative border-l-2 border-blue-200 ml-4 pl-8 space-y-8">
+                                <div class="relative">
+                                    <div class="timeline-dot bg-blue-600 ring-blue-100"></div>
+                                    <h4 class="font-bold text-lg text-slate-800">🛫 07:35 인천 국제공항 출발</h4>
+                                    <p class="text-slate-600 text-sm mt-2 leading-relaxed">아시아나항공(OZ701)편을 이용하여 필리핀으로 향합니다. (약 4시간 5분 비행 / 기내식 제공)</p>
+                                </div>
+                                <div class="relative">
+                                    <div class="timeline-dot bg-blue-500 ring-blue-100"></div>
+                                    <h4 class="font-bold text-lg text-slate-800">🛬 10:40 마닐라 국제공항 도착 & 환영 미팅</h4>
+                                    <p class="text-slate-600 text-sm mt-2 leading-relaxed">수하물을 찾고 가이드와 반갑게 미팅을 진행합니다. 전용 차량에 탑승 후 전체 일정 브리핑을 들으며 필리핀 여행의 첫발을 내디딥니다.</p>
+                                </div>
+                                <div class="relative">
+                                    <div class="timeline-dot bg-blue-500 ring-blue-100"></div>
+                                    <h4 class="font-bold text-lg text-slate-800">⛪ 김대건 성당 참배 및 관광</h4>
+                                    <p class="text-slate-600 text-sm mt-2 leading-relaxed bg-slate-50 p-3 rounded-lg border border-slate-100">한국인 최초의 사제인 성 김대건 안드레아 신부님이 마카오에서 필리핀으로 피신하여 머물렀던 롤롬보이 지역의 성당을 방문하여 역사적 의미를 되새깁니다. (약 1시간 소요)</p>
+                                </div>
+                                <div class="relative">
+                                    <div class="timeline-dot bg-blue-500 ring-blue-100"></div>
+                                    <h4 class="font-bold text-lg text-slate-800">든든한 중식 (다래정: 두루치기 + 된장찌개)</h4>
+                                </div>
+                                <div class="relative">
+                                    <div class="timeline-dot bg-blue-500 ring-blue-100"></div>
+                                    <h4 class="font-bold text-lg text-slate-800">🚌 앙헬레스로 이동 (약 30분 소요)</h4>
+                                </div>
+                                <div class="relative">
+                                    <div class="timeline-dot bg-purple-500 ring-purple-100"></div>
+                                    <h4 class="font-bold text-xl text-purple-800">💆‍♀️ 1일차 릴렉싱 마사지 (90분)</h4>
+                                    <p class="text-slate-600 text-sm mt-2 leading-relaxed">필리핀에서의 첫날, 장시간 비행과 이동으로 쌓인 긴장과 피로를 전문 테라피스트의 손길로 부드럽게 풀어냅니다.</p>
+                                </div>
+                                <div class="relative">
+                                    <div class="timeline-dot bg-slate-800 ring-slate-200"></div>
+                                    <div class="bg-slate-800 text-white p-5 rounded-2xl shadow-lg mt-2 relative overflow-hidden">
+                                        <div class="absolute right-0 bottom-0 opacity-10 text-7xl"><i class="fa-solid fa-moon"></i></div>
+                                        <h4 class="font-bold text-lg text-emerald-300 mb-2"><i class="fa-solid fa-bed mr-2"></i> 1일차 숙소 및 야간 안내</h4>
+                                        <p class="text-sm text-slate-200 mb-1">▶ 환영 석식: 현지 한식당 (삼겹살)</p>
+                                        <p class="text-sm text-slate-200">▶ 숙소 투숙: <strong>위더스 호텔 (Widus Hotel)</strong> 또는 동급</p>
+                                        <p class="text-xs text-slate-400 mt-2">* 앙헬레스 시내에 위치해 내일 일정을 위해 편안히 휴식합니다.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Day 2 -->
+                        <div id="day2" class="tab-content hidden animate-fade-in-up p-6 md:p-10">
+                            <h3 class="font-bold text-2xl text-slate-800 mb-6 border-b pb-4"><i class="fa-solid fa-car text-blue-600 mr-2"></i> 클락 역사 탐방 및 헌드레드 아일랜드의 밤</h3>
+                            <div class="relative border-l-2 border-blue-200 ml-4 pl-8 space-y-8">
+                                <div class="relative">
+                                    <div class="timeline-dot bg-blue-500 ring-blue-100"></div>
+                                    <h4 class="font-bold text-lg text-slate-800">호텔 조식 후 체크아웃</h4>
+                                </div>
+                                <div class="relative">
+                                    <div class="timeline-dot bg-blue-500 ring-blue-100"></div>
+                                    <h4 class="font-bold text-lg text-slate-800">🏛️ 클락 박물관 관람</h4>
+                                    <p class="text-slate-600 text-sm mt-2 leading-relaxed">과거 미군 기지였던 클락의 역사, 피나투보 화산 폭발의 아픔, 그리고 현재의 경제 특구로 발전하기까지의 흥미로운 스토리를 사진과 유물로 살펴봅니다.</p>
+                                </div>
+                                <div class="relative">
+                                    <div class="timeline-dot bg-blue-500 ring-blue-100"></div>
+                                    <h4 class="font-bold text-lg text-slate-800">현지식 체험 중식: 졸리비 (Jollibee)</h4>
+                                    <p class="text-slate-600 text-sm mt-2">필리핀 전역을 휩쓴 국민 패스트푸드 브랜드! 치킨과 스파게티가 어우러진 시그니처 메뉴를 맛보는 재미있는 로컬 식도락 타임입니다.</p>
+                                </div>
+                                <div class="relative">
+                                    <div class="timeline-dot bg-blue-500 ring-blue-100"></div>
+                                    <h4 class="font-bold text-lg text-slate-800">🚌 팡가시난 지역, 헌드레드 아일랜드로 이동</h4>
+                                    <p class="text-slate-600 text-sm mt-2">필리핀 농촌의 목가적인 풍경을 감상하며 약 1시간 30분간 드라이브를 즐깁니다.</p>
+                                </div>
+                                <div class="relative">
+                                    <div class="timeline-dot bg-purple-500 ring-purple-100"></div>
+                                    <h4 class="font-bold text-xl text-purple-800">💆‍♀️ 2일차 리조트 마사지 (90분)</h4>
+                                    <p class="text-slate-600 text-sm mt-2">이동의 피로를 잊게 해주는 전신 마사지로 근육을 이완시키며 몸과 마음을 정화합니다.</p>
+                                </div>
+                                <div class="relative">
+                                    <div class="timeline-dot bg-blue-500 ring-blue-100"></div>
+                                    <h4 class="font-bold text-lg text-slate-800">석식: Max's 현지 레스토랑</h4>
+                                    <p class="text-slate-600 text-sm mt-2">현지인들의 사랑을 듬뿍 받는 전통 필리핀 가정식 치킨 요리를 맛볼 수 있습니다.</p>
+                                </div>
+                                <div class="relative">
+                                    <div class="timeline-dot bg-slate-800 ring-slate-200"></div>
+                                    <div class="bg-slate-800 text-white p-5 rounded-2xl shadow-lg mt-2 relative overflow-hidden">
+                                        <div class="absolute right-0 bottom-0 opacity-10 text-7xl"><i class="fa-solid fa-moon"></i></div>
+                                        <h4 class="font-bold text-lg text-emerald-300 mb-2"><i class="fa-solid fa-cocktail mr-2"></i> 루캅 공원 나이트투어 & 숙소</h4>
+                                        <p class="text-sm text-slate-200 mb-1">▶ <strong>루캅(Lucap) 공원:</strong> 바다와 인접한 공원의 노천카페에서 시원한 맥주나 과일 주스를 마시며 여유로운 밤 산책을 즐깁니다.</p>
+                                        <p class="text-sm text-slate-200 mt-3">▶ <strong>숙소 투숙:</strong> 프록시 호텔 (Proxy Hotel) 또는 동급 숙소</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Day 3 -->
+                        <div id="day3" class="tab-content hidden animate-fade-in-up p-6 md:p-10">
+                            <h3 class="font-bold text-2xl text-slate-800 mb-6 border-b pb-4"><i class="fa-solid fa-umbrella-beach text-blue-600 mr-2"></i> 에메랄드빛 해상 국립공원 액티비티 데이</h3>
+                            <div class="relative border-l-2 border-emerald-300 ml-4 pl-8 space-y-8">
+                                <div class="relative">
+                                    <div class="timeline-dot bg-emerald-500 ring-emerald-100"></div>
+                                    <h4 class="font-bold text-lg text-slate-800">리조트 조식 후 선착장으로 이동</h4>
+                                </div>
+                                <div class="relative">
+                                    <div class="timeline-dot bg-emerald-500 ring-emerald-100"></div>
+                                    <h4 class="font-bold text-2xl text-emerald-700">🏝️ 헌드레드 아일랜드 호핑 투어</h4>
+                                    <p class="text-slate-700 font-medium text-sm mt-2 leading-relaxed bg-emerald-50 p-4 rounded-xl border border-emerald-200">
+                                        푸른 바다 위로 흩뿌려진 123개의 보석 같은 섬들 사이를 방카(필리핀 전통 배)를 타고 누빕니다. <br>
+                                        • <strong>가버너스 섬(Governor's Island):</strong> 전망대에 올라 수많은 섬들이 펼쳐내는 파노라마 뷰 감상<br>
+                                        • <strong>액티비티 만끽:</strong> 시원하게 바다를 가르는 <strong>바나나보트</strong>와 섬과 섬 사이를 날아가는 짜릿한 <strong>짚라인(Zipline)</strong> 체험<br>
+                                        • 맑은 바다에서 즐기는 스노클링 및 자유 물놀이 시간
+                                    </p>
+                                </div>
+                                <div class="relative">
+                                    <div class="timeline-dot bg-emerald-500 ring-emerald-100"></div>
+                                    <h4 class="font-bold text-lg text-slate-800">낭만적인 무인도 중식 (해산물 & 모둠 BBQ)</h4>
+                                    <p class="text-slate-600 text-sm mt-2">푸른 바다를 배경으로 숯불에 구워낸 꼬치, 새우, 그릴 바베큐와 열대 과일을 맛보는 특별한 식사입니다.</p>
+                                </div>
+                                <div class="relative">
+                                    <div class="timeline-dot bg-purple-500 ring-purple-100"></div>
+                                    <h4 class="font-bold text-xl text-purple-800">💆‍♀️ 3일차 휴양지 마사지 (90분)</h4>
+                                    <p class="text-slate-600 text-sm mt-2">물놀이와 액티비티로 한껏 사용한 에너지를 채우고, 뭉친 근육을 부드럽게 이완시킵니다.</p>
+                                </div>
+                                <div class="relative">
+                                    <div class="timeline-dot bg-slate-800 ring-slate-200"></div>
+                                    <div class="bg-slate-800 text-white p-5 rounded-2xl shadow-lg mt-2 relative overflow-hidden">
+                                        <div class="absolute right-0 bottom-0 opacity-10 text-7xl"><i class="fa-solid fa-moon"></i></div>
+                                        <h4 class="font-bold text-lg text-emerald-300 mb-2"><i class="fa-solid fa-utensils mr-2"></i> 연박 휴식 및 나이트 투어 연장</h4>
+                                        <p class="text-sm text-slate-200 mb-1">▶ <strong>석식:</strong> 호텔 뷔페 또는 깔끔한 호텔식</p>
+                                        <p class="text-sm text-slate-200 mb-1">▶ 식사 후 아쉬운 밤바다의 낭만을 즐기며 루캅 공원을 추가로 즐기실 수 있습니다.</p>
+                                        <p class="text-sm text-slate-200 mt-2">▶ <strong>숙소 연박:</strong> 프록시 호텔 (Proxy Hotel) 또는 동급</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Day 4 -->
+                        <div id="day4" class="tab-content hidden animate-fade-in-up p-6 md:p-10">
+                            <h3 class="font-bold text-2xl text-slate-800 mb-6 border-b pb-4"><i class="fa-solid fa-mountain text-blue-600 mr-2"></i> 구름 위의 도시, 바기오의 낭만</h3>
+                            <div class="relative border-l-2 border-blue-200 ml-4 pl-8 space-y-8">
+                                <div class="relative">
+                                    <div class="timeline-dot bg-blue-500 ring-blue-100"></div>
+                                    <h4 class="font-bold text-lg text-slate-800">조식 후 체크아웃</h4>
+                                </div>
+                                <div class="relative">
+                                    <div class="timeline-dot bg-blue-500 ring-blue-100"></div>
+                                    <h4 class="font-bold text-lg text-slate-800">🚌 산악 도로를 타고 바기오로 이동 (약 1시간 소요)</h4>
+                                    <p class="text-slate-600 text-sm mt-2 leading-relaxed">구불구불 웅장한 코르디예라 산맥을 오를수록 쾌적하고 선선해지는 공기를 온몸으로 느낄 수 있습니다. (해발 1,500m 위치)</p>
+                                </div>
+                                <div class="relative">
+                                    <div class="timeline-dot bg-blue-500 ring-blue-100"></div>
+                                    <h4 class="font-bold text-lg text-slate-800">푸짐한 중식: 코리안팔라스 (무제한 고기 뷔페)</h4>
+                                </div>
+                                <div class="relative">
+                                    <div class="timeline-dot bg-blue-500 ring-blue-100"></div>
+                                    <h4 class="font-bold text-lg text-slate-800">⛰️ 구름을 밟는 전망, 마인스 뷰 덱 (Mines View Deck)</h4>
+                                    <p class="text-slate-600 text-sm mt-2 leading-relaxed bg-slate-50 p-3 rounded-lg border border-slate-100">과거 금광과 구리 광산이었던 계곡과 코르디예라 산맥의 장엄한 자태가 파노라마처럼 펼쳐지는 바기오 최고의 포토존입니다. 전통 의상 입어보기, 산악 말과 사진 찍기 등 다채로운 볼거리가 가득합니다. (약 2시간 관광)</p>
+                                </div>
+                                <div class="relative">
+                                    <div class="timeline-dot bg-purple-500 ring-purple-100"></div>
+                                    <h4 class="font-bold text-xl text-purple-800">💆‍♀️ 4일차 바기오 힐링 마사지 (90분)</h4>
+                                    <p class="text-slate-600 text-sm mt-2">선선한 고산 지대에서 받는 마사지는 혈액 순환을 돕고 더욱 깊은 휴식을 선사합니다.</p>
+                                </div>
+                                <div class="relative">
+                                    <div class="timeline-dot bg-blue-500 ring-blue-100"></div>
+                                    <h4 class="font-bold text-lg text-slate-800">이색적인 석식: 통양 (Tong Yang)</h4>
+                                    <p class="text-slate-600 text-sm mt-2">원하는 재료를 직접 골라 철판에 굽고 뜨끈한 육수에 샤브샤브로 즐기는 현지 유명 무제한 뷔페 레스토랑입니다.</p>
+                                </div>
+                                <div class="relative">
+                                    <div class="timeline-dot bg-slate-800 ring-slate-200"></div>
+                                    <div class="bg-slate-800 text-white p-5 rounded-2xl shadow-lg mt-2 relative overflow-hidden">
+                                        <div class="absolute right-0 bottom-0 opacity-10 text-7xl"><i class="fa-solid fa-moon"></i></div>
+                                        <h4 class="font-bold text-lg text-emerald-300 mb-2"><i class="fa-solid fa-city mr-2"></i> 바기오 나이트투어 & 호텔</h4>
+                                        <p class="text-sm text-slate-200 mb-1">▶ <strong>나이트투어:</strong> 거대한 규모의 SM 쇼핑몰을 구경하고, <strong>번햄파크(Burnham Park)</strong> 주변에 열리는 야시장의 활기찬 분위기 속에서 길거리 음식과 중고 의류 문화를 체험합니다.</p>
+                                        <p class="text-sm text-slate-200 mt-3">▶ <strong>숙소 투숙:</strong> 아이온 호텔 (Ion Hotel) 또는 동급</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Day 5/6 -->
+                        <div id="day5" class="tab-content hidden animate-fade-in-up p-6 md:p-10">
+                            <h3 class="font-bold text-2xl text-slate-800 mb-6 border-b pb-4"><i class="fa-solid fa-city text-blue-600 mr-2"></i> 아쉬움을 달래는 마닐라 시티투어 및 귀국</h3>
+                            <div class="relative border-l-2 border-blue-200 ml-4 pl-8 space-y-8">
+                                <div class="relative">
+                                    <div class="timeline-dot bg-blue-500 ring-blue-100"></div>
+                                    <h4 class="font-bold text-lg text-slate-800">조식 후 호텔 체크아웃</h4>
+                                </div>
+                                <div class="relative">
+                                    <div class="timeline-dot bg-blue-500 ring-blue-100"></div>
+                                    <h4 class="font-bold text-lg text-slate-800">⛪ 핑크빛 외벽의 바기오 대성당</h4>
+                                    <p class="text-slate-600 text-sm mt-2 leading-relaxed">언덕 위에 자리한 바기오의 상징. 쌍탑 구조와 화려한 스테인드글라스, 아름다운 로즈 윈도우를 감상하며 평화로운 분위기를 느낍니다.</p>
+                                </div>
+                                <div class="relative">
+                                    <div class="timeline-dot bg-blue-500 ring-blue-100"></div>
+                                    <h4 class="font-bold text-lg text-slate-800">🚌 앙헬레스로 하산 및 중식 (한식)</h4>
+                                </div>
+                                <div class="relative">
+                                    <div class="timeline-dot bg-blue-500 ring-blue-100"></div>
+                                    <h4 class="font-bold text-lg text-slate-800">🚌 마닐라 이동 및 시내 관광 (약 2시간 소요)</h4>
+                                    <p class="text-slate-600 text-sm mt-2 leading-relaxed">스페인 통치 시절의 성곽 도시 인트라무로스(또는 마닐라 주요 도심 명소)를 둘러보고, 쇼핑 센터를 방문해 여행을 추억할 기념품을 구매합니다.</p>
+                                </div>
+                                <div class="relative">
+                                    <div class="timeline-dot bg-purple-500 ring-purple-100"></div>
+                                    <h4 class="font-bold text-xl text-purple-800">💆‍♀️ 5일차 피날레: 라바스톤 마사지 (90분)</h4>
+                                    <p class="text-slate-600 text-sm mt-2 bg-purple-50 p-3 rounded-lg border border-purple-100">에브리데이 마사지의 화려한 피날레! 따뜻하게 데운 화산석(라바스톤)을 이용해 온몸의 혈을 자극하고 독소를 배출시켜 여행 마지막 날의 여독을 완벽히 제거합니다.</p>
+                                </div>
+                                <div class="relative">
+                                    <div class="timeline-dot bg-blue-500 ring-blue-100"></div>
+                                    <h4 class="font-bold text-lg text-slate-800">석식 (따끈한 샤브샤브) 및 오카다 분수쇼</h4>
+                                    <p class="text-slate-600 text-sm mt-2 leading-relaxed">마닐라 최고의 랜드마크인 오카다 마닐라 리조트에서 세계 최대 규모의 화려하고 웅장한 초대형 음악 분수쇼를 관람하며 황홀한 마무리를 합니다.</p>
+                                </div>
+                                <div class="relative">
+                                    <div class="timeline-dot bg-slate-800 ring-slate-200"></div>
+                                    <h4 class="font-bold text-lg text-slate-800">🛫 [5일차 늦은 밤] 23:50 마닐라 공항 출발</h4>
+                                    <p class="text-slate-600 text-sm mt-2">가이드의 배웅 속에 아시아나항공(OZ704)편에 탑승하여 귀국길에 오릅니다.</p>
+                                </div>
+                                <div class="relative">
+                                    <div class="timeline-dot bg-slate-800 ring-slate-200"></div>
+                                    <h4 class="font-bold text-lg text-slate-800">🛬 [6일차 아침] 05:00 인천 국제공항 도착</h4>
+                                    <p class="text-slate-600 text-sm mt-2">수고하셨습니다. 가정으로 안전하게 돌아가시길 바랍니다.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 🏨 Accommodation Section (호텔 상세정보) -->
+        <section id="accommodations" class="py-16 bg-indigo-50 border-t border-indigo-100 print:hidden">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-12">
+                    <span class="text-indigo-600 font-black tracking-widest text-xs uppercase">ACCOMMODATION</span>
+                    <h2 class="text-3xl font-bold text-slate-800 mt-2">머무실 호텔 안내</h2>
+                    <p class="text-sm text-slate-500 mt-2">편안한 휴식을 제공할 바기오와 헌드레드 아일랜드의 대표 호텔입니다.</p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+                    <!-- Ion Hotel -->
+                    <div class="bg-white rounded-3xl overflow-hidden border border-slate-200 shadow-lg hover:shadow-xl transition-shadow flex flex-col">
+                        <div class="h-64 overflow-hidden relative">
+                            <img src="https://images.openai.com/static-rsc-4/IniVrAisdF2qBUavcJE6_zJt1M23uBV0vAp1QrL9RVzWq1HuD-o4L0pKK8AExg4wf7QFPapsL-OHrjunAhys4fpBZUiwCYTeNNKf-4G2ydkrl30mSp2-sNMsG9OzaiGHcilSGhCwgk8bhoWL58PtajfFwA25zYVnfSQtnGAOxT8?purpose=inline" alt="Ion Hotel" class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-500">
+                            <div class="absolute top-4 left-4 bg-indigo-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow-md">바기오 (4일차 숙소)</div>
+                        </div>
+                        <div class="p-6 md:p-8 flex-1 flex flex-col">
+                            <h3 class="text-2xl font-bold text-slate-800 mb-4">🏨 Ion Hotel (아이온 호텔)</h3>
+                            <ul class="space-y-3 text-sm text-slate-600 flex-1">
+                                <li class="flex items-start gap-2"><i class="fa-solid fa-location-dot mt-1 text-indigo-500"></i> <span><strong>위치:</strong> 바기오 Legarda Road</span></li>
+                                <li class="flex items-start gap-2"><i class="fa-solid fa-bed mt-1 text-indigo-500"></i> <span><strong>객실수:</strong> 약 186객실</span></li>
+                                <li class="flex items-start gap-2"><i class="fa-solid fa-map mt-1 text-indigo-500"></i> <span><strong>주요 접근지:</strong> 번햄파크 도보권, 세션로드 인접으로 바기오 야간 관광에 최적화되어 있습니다.</span></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Proxy Hotel -->
+                    <div class="bg-white rounded-3xl overflow-hidden border border-slate-200 shadow-lg hover:shadow-xl transition-shadow flex flex-col">
+                        <div class="h-64 overflow-hidden relative">
+                            <img src="https://images.openai.com/static-rsc-4/EQg2G_zf0aV--8rD3AxOevav2DSoafaAjFhlCSjbOa46Fn1piuYFbIaKG-t8OyqDSjXeaaaeCViwTLW0OhdZ-gHFDj9vB1HScg5VkvZIZ5_dpZsXeLTSCedmwglxb6oHwBMcv5EVc5GYWQKxBIV3pJYmn_JDXWBtUgX5TJxybAM?purpose=inline" alt="Proxy Plus Hotel" class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-500">
+                            <div class="absolute top-4 left-4 bg-indigo-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow-md">헌드레드 아일랜드 (2, 3일차 숙소)</div>
+                        </div>
+                        <div class="p-6 md:p-8 flex-1 flex flex-col">
+                            <h3 class="text-xl md:text-2xl font-bold text-slate-800 mb-4">🏨 PROXY Plus by The Oriental</h3>
+                            <ul class="space-y-3 text-sm text-slate-600 flex-1">
+                                <li class="flex items-start gap-2"><i class="fa-solid fa-location-dot mt-1 text-indigo-500"></i> <span><strong>위치:</strong> 필리핀 팡가시난 알라미노스 (헌드레드 아일랜드 관문)</span></li>
+                                <li class="flex items-start gap-2"><i class="fa-solid fa-star mt-1 text-indigo-500"></i> <span><strong>특징:</strong> 휴양에 어울리는 감성적인 신축 리조트형 호텔</span></li>
+                                <li class="flex items-start gap-2"><i class="fa-solid fa-map mt-1 text-indigo-500"></i> <span><strong>주변 관광지:</strong> 헌드레드 아일랜드, 볼로비치 등 해양 액티비티 이동에 매우 편리합니다.</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 🗣️ Survival Phrases Section -->
+        <section id="survival" class="py-16 bg-purple-50 border-t border-purple-100 print:hidden">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-10">
+                    <span class="text-purple-600 font-black tracking-widest text-xs uppercase">SURVIVAL PHRASES</span>
+                    <h2 class="text-3xl font-bold text-slate-800 mt-2">원클릭 현지 생존 회화</h2>
+                    <p class="text-slate-500 mt-2 text-sm">영어나 따갈로그어를 몰라도 터치 한 번이면 끝! 현지인에게 화면을 보여주세요.</p>
+                </div>
+                
+                <div class="max-w-4xl mx-auto grid grid-cols-2 md:grid-cols-3 gap-4">
+                    <!-- Buttons -->
+                    <button onclick="showPhrase('🍽️', '메뉴판 주세요', 'Patingin ng menu, please.', '파팅인 낭 메뉴, 플리즈')" class="bg-white p-4 rounded-2xl shadow-sm hover:shadow-md border border-purple-100 transition flex flex-col items-center gap-2">
+                        <span class="text-3xl">🍽️</span><span class="font-bold text-slate-700 text-sm">메뉴판 요청</span>
+                    </button>
+                    <button onclick="showPhrase('👍', '정말 맛있어요!', 'Masarap!', '마사랍!')" class="bg-white p-4 rounded-2xl shadow-sm hover:shadow-md border border-purple-100 transition flex flex-col items-center gap-2">
+                        <span class="text-3xl">👍</span><span class="font-bold text-slate-700 text-sm">맛있어요</span>
+                    </button>
+                    <button onclick="showPhrase('💧', '얼음물 한 잔 주세요', 'Penge pong tubig na may yelo.', '펭에 퐁 투빅 나 마이 옐로')" class="bg-white p-4 rounded-2xl shadow-sm hover:shadow-md border border-purple-100 transition flex flex-col items-center gap-2">
+                        <span class="text-3xl">💧</span><span class="font-bold text-slate-700 text-sm">물 요청</span>
+                    </button>
+                    <button onclick="showPhrase('💳', '계산할게요 (빌지 주세요)', 'Bill nga po.', '빌 낭 포')" class="bg-white p-4 rounded-2xl shadow-sm hover:shadow-md border border-purple-100 transition flex flex-col items-center gap-2">
+                        <span class="text-3xl">💳</span><span class="font-bold text-slate-700 text-sm">계산요청</span>
+                    </button>
+                    <button onclick="showPhrase('💰', '이거 얼마예요?', 'Magkano po ito?', '막카노 포 이토?')" class="bg-white p-4 rounded-2xl shadow-sm hover:shadow-md border border-purple-100 transition flex flex-col items-center gap-2">
+                        <span class="text-3xl">💰</span><span class="font-bold text-slate-700 text-sm">가격문의</span>
+                    </button>
+                    <button onclick="showPhrase('💸', '너무 비싸요. 깎아주세요.', 'Ang mahal naman. Walang tawad?', '앙 마할 나만. 왈랑 타와드?')" class="bg-white p-4 rounded-2xl shadow-sm hover:shadow-md border border-purple-100 transition flex flex-col items-center gap-2">
+                        <span class="text-3xl">💸</span><span class="font-bold text-slate-700 text-sm">흥정하기</span>
+                    </button>
+                    <button onclick="showPhrase('🚽', '화장실이 어디인가요?', 'Nasaan ang banyo?', '나사안 앙 반요?')" class="bg-white p-4 rounded-2xl shadow-sm hover:shadow-md border border-purple-100 transition flex flex-col items-center gap-2">
+                        <span class="text-3xl">🚽</span><span class="font-bold text-slate-700 text-sm">화장실</span>
+                    </button>
+                    <button onclick="showPhrase('🙏', '감사합니다', 'Salamat po.', '살라맛 포')" class="bg-white p-4 rounded-2xl shadow-sm hover:shadow-md border border-purple-100 transition flex flex-col items-center gap-2">
+                        <span class="text-3xl">🙏</span><span class="font-bold text-slate-700 text-sm">감사</span>
+                    </button>
+                    <button onclick="showPhrase('🚨', '도와주세요! 긴급상황입니다.', 'Tulong! Emergency!', '뚤롱! 이머전시!')" class="bg-white p-4 rounded-2xl shadow-sm hover:shadow-md border border-red-200 transition flex flex-col items-center gap-2">
+                        <span class="text-3xl">🚨</span><span class="font-bold text-red-600 text-sm">긴급도움</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Checklist & Memo Section -->
+        <section id="check" class="py-16 bg-white border-t border-slate-100">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-10">
+                    <span class="text-blue-600 font-black tracking-widest text-xs uppercase">PREPARE</span>
+                    <h2 class="text-3xl font-bold text-slate-800 mt-2">출국 전 꼼꼼 체크 & 여행 메모</h2>
+                    <p class="text-sm text-slate-500 mt-2">입력하신 메모와 체크 내역은 본 기기에 자동 저장됩니다.</p>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+                    <!-- 체크리스트 -->
+                    <div class="bg-slate-50 p-6 rounded-3xl border border-slate-200 shadow-sm">
+                        <h3 class="font-bold text-lg text-slate-800 mb-4 flex items-center gap-2"><i class="fa-solid fa-list-check text-blue-500"></i> 필수 준비물 체크리스트</h3>
+                        <div id="checklist-container" class="space-y-3 flex-1">
+                            <!-- JS Generated -->
+                        </div>
+                    </div>
+                    
+                    <!-- 여행 메모장 -->
+                    <div class="bg-yellow-50 p-6 rounded-3xl border border-yellow-200 shadow-sm flex flex-col">
+                        <div class="flex justify-between items-center mb-4">
+                            <h3 class="font-bold text-lg text-yellow-800 flex items-center gap-2"><i class="fa-solid fa-pen-clip text-yellow-600"></i> 나의 여행 메모장</h3>
+                            <button onclick="clearMemo()" class="text-[10px] bg-white border border-yellow-300 text-yellow-700 px-2 py-1 rounded hover:bg-yellow-100 transition">내용 지우기</button>
+                        </div>
+                        <textarea id="travel-memo" class="flex-1 w-full min-h-[250px] md:min-h-[auto] bg-white p-4 rounded-xl border border-yellow-300 text-slate-700 resize-none overflow-y-auto focus:outline-none focus:ring-2 focus:ring-yellow-400 shadow-inner" placeholder="가족들 선물 리스트, 챙겨야 할 개별 약품, 혹은 여행 중 떠오르는 영감들을 자유롭게 적어보세요."></textarea>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Emergency Contact -->
+        <section id="contact" class="py-16 bg-red-50 border-t border-red-100">
+            <div class="container mx-auto px-4 text-center">
+                <h2 class="text-2xl font-bold text-red-800 mb-6"><i class="fa-solid fa-phone-volume mr-2"></i>비상 연락망</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-3xl mx-auto">
+                    <div class="bg-white p-5 rounded-2xl border border-red-200 shadow-sm hover:shadow-md transition">
+                        <h4 class="font-bold text-slate-800 mb-2">투어메이커 상황실</h4>
+                        <p class="text-slate-600">대표 이재명: <a href="tel:010-9443-7881" class="font-bold text-blue-600">010-9443-7881</a></p>
+                    </div>
+                    <div class="bg-white p-5 rounded-2xl border border-red-200 shadow-sm hover:shadow-md transition">
+                        <h4 class="font-bold text-slate-800 mb-2">주 필리핀 대한민국 대사관</h4>
+                        <p class="text-slate-600">긴급연락처: <a href="tel:+63-917-817-5703" class="font-bold text-red-600">+63-917-817-5703</a></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 🌿 ESG Dashboard -->
+        <section class="py-12 bg-[#0f342b] text-white border-t border-[#09201a] print:hidden">
+            <div class="container mx-auto px-4 text-center">
+                <span class="inline-block bg-[#164a3d] text-emerald-300 text-xs px-3 py-1 rounded-full font-bold shadow-sm mb-3 border border-[#1d604f]">
+                    <i class="fa-solid fa-leaf"></i> Eco-Friendly Tour
+                </span>
+                <h2 class="text-2xl font-bold mb-6">종이 없는 친환경 여행 실천</h2>
+                <div class="grid grid-cols-3 gap-4 max-w-3xl mx-auto mb-6">
+                    <div class="bg-[#164a3d] rounded-2xl p-4 border border-[#1d604f]">
+                        <h4 class="text-emerald-300 text-xs font-bold mb-1">종이 절감</h4>
+                        <p class="text-2xl font-black">8<span class="text-sm font-medium text-emerald-400 ml-1">장</span></p>
+                    </div>
+                    <div class="bg-[#164a3d] rounded-2xl p-4 border border-[#1d604f]">
+                        <h4 class="text-emerald-300 text-xs font-bold mb-1">탄소 배출 감소</h4>
+                        <p class="text-2xl font-black">38<span class="text-sm font-medium text-emerald-400 ml-1">g</span></p>
+                    </div>
+                    <div class="bg-[#164a3d] rounded-2xl p-4 border border-[#1d604f]">
+                        <h4 class="text-emerald-300 text-xs font-bold mb-1">물 절약</h4>
+                        <p class="text-2xl font-black">75<span class="text-sm font-medium text-emerald-400 ml-1">L</span></p>
+                    </div>
+                </div>
+                <p class="text-emerald-100 text-xs max-w-2xl mx-auto leading-relaxed">
+                    본 행사는 스마트 가이드북 도입을 통해 참여 인원 비례 약 1그루의 나무를 심는 효과를 거두었으며, 디지털 전환(DX)을 통한 공공부문 에너지 절약 실천의 모범 사례입니다. (1인당 기준)
+                </p>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="bg-[#f8f9fa] py-12 border-t border-slate-200 text-center">
+            <div class="container mx-auto px-4">
+                <div class="mb-6">
+                    <a href="http://tourmaker.kr" target="_blank" class="inline-block border border-slate-300 rounded-xl px-6 py-3 bg-white text-slate-700 font-bold hover:bg-slate-50 transition-all shadow-sm text-sm">
+                        <i class="fa-solid fa-home mr-1"></i> 투어메이커 공식 홈페이지
+                    </a>
+                </div>
+                <p class="text-[12px] text-[#6c757d] font-normal max-w-2xl mx-auto leading-relaxed text-center">
+                    [System Powered by TOURMAKER] 본 스마트 가이드북은 고객님의 기획과 투어메이커의 트래블 테크 기술 제휴로 제작되었습니다.
+                </p>
+                <p class="text-[10px] text-slate-400 mt-4">&copy; 2026 Tourmaker Inc. All rights reserved.</p>
+            </div>
+        </footer>
+
+    </div>
+
+    <!-- 🖨️ Print-Only Area -->
+    <div id="print-area" class="hidden print:block w-full bg-white text-black py-2">
+        <h1 class="text-2xl font-black text-center mb-5 pb-3 border-b-2 border-slate-800" style="font-family: 'Nanum Myeongjo', serif;">
+            마닐라/바기오/헌드레드 아일랜드 4박 6일 일정표 (Everyday Massage Day)
+        </h1>
+        <div class="flex justify-between items-end mb-3 font-bold text-[10.5pt]">
+            <div class="text-slate-800">
+                <p>일 정 : 2027.03.10(수) ~ 03.15(월) [4박 6일]</p>
+                <p class="mt-1">항 공 : 아시아나항공 (OZ701/OZ704)</p>
+            </div>
+            <div class="text-right text-slate-800">
+                <p>진행: 투어메이커</p>
+            </div>
+        </div>
+
+        <table class="w-full text-[10.5pt] border-collapse border-2 border-slate-800">
+            <thead>
+                <tr class="bg-slate-100 text-slate-800 border-b border-slate-800">
+                    <th class="border-r border-slate-800 py-2 w-[8%] text-center font-bold">일자</th>
+                    <th class="border-r border-slate-800 py-2 w-[12%] text-center font-bold">지역/교통</th>
+                    <th class="border-r border-slate-800 py-2 w-[70%] text-center font-bold">주요 일정 요약</th>
+                    <th class="py-2 w-[10%] text-center font-bold">식사</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Day 1 -->
+                <tr class="border-b-2 border-slate-800">
+                    <td class="text-center align-middle font-bold bg-slate-50 border-r border-slate-800">1일차</td>
+                    <td class="text-center align-middle border-r border-slate-800">인천<br>마닐라<br>앙헬레스</td>
+                    <td class="p-0 border-r border-slate-800 align-top">
+                        <table class="w-full h-full border-none m-0">
+                            <tr><td class="text-left py-2 px-3 align-top font-bold text-blue-600">[07:35] 인천 국제공항 출발 (OZ701)</td></tr>
+                            <tr><td class="text-left py-1 px-3 align-top font-bold text-blue-600">[10:40] 마닐라 국제공항 도착 및 가이드 미팅</td></tr>
+                            <tr><td class="text-left py-1 px-3 align-top">▶ 김대건 성당 방문 참배 및 관광 (약 1시간 소요)</td></tr>
+                            <tr><td class="text-left py-1 px-3 align-top">▶ 중식 후 앙헬레스로 차량 이동 (약 30분)</td></tr>
+                            <tr><td class="text-left py-1 px-3 align-top font-bold text-purple-700">★ 전신 릴렉싱 마사지 90분 체험</td></tr>
+                            <tr><td class="text-left pb-2 pt-1 px-3 align-top">▶ 호텔 체크인 및 환영 석식 (위더스 호텔 동급)</td></tr>
+                        </table>
+                    </td>
+                    <td class="text-center align-middle p-2 text-[9.5pt]">
+                        [조] 기내식<br>[중] 현지식<br>[석] 삼겹살
+                    </td>
+                </tr>
+                <!-- Day 2 -->
+                <tr class="border-b-2 border-slate-800">
+                    <td class="text-center align-middle font-bold bg-slate-50 border-r border-slate-800">2일차</td>
+                    <td class="text-center align-middle border-r border-slate-800">앙헬레스<br>헌드레드<br>아일랜드</td>
+                    <td class="p-0 border-r border-slate-800 align-top">
+                        <table class="w-full h-full border-none m-0">
+                            <tr><td class="text-left py-2 px-3 align-top">▶ 조식 후 클락 박물관 관람 (미군기지 및 화산 역사 시찰)</td></tr>
+                            <tr><td class="text-left py-1 px-3 align-top">▶ 중식 (필리핀 국민 브랜드 졸리비 특식) 후 헌드레드 아일랜드 이동</td></tr>
+                            <tr><td class="text-left py-1 px-3 align-top font-bold text-purple-700">★ 리조트 마사지 90분 체험</td></tr>
+                            <tr><td class="text-left py-1 px-3 align-top">▶ 석식 및 루캅공원 해변 나이트 투어 (노천카페 산책)</td></tr>
+                            <tr><td class="text-left pb-2 pt-1 px-3 align-top">▶ 호텔 휴식 (프록시 호텔 동급)</td></tr>
+                        </table>
+                    </td>
+                    <td class="text-center align-middle p-2 text-[9.5pt]">
+                        [조] 호텔식<br>[중] 현지식<br>[석] 현지식
+                    </td>
+                </tr>
+                <!-- Day 3 -->
+                <tr class="border-b-2 border-slate-800">
+                    <td class="text-center align-middle font-bold bg-slate-50 border-r border-slate-800">3일차</td>
+                    <td class="text-center align-middle border-r border-slate-800">헌드레드<br>아일랜드</td>
+                    <td class="p-0 border-r border-slate-800 align-top">
+                        <table class="w-full h-full border-none m-0">
+                            <tr><td class="text-left py-2 px-3 align-top font-bold text-blue-600">▶ 헌드레드 아일랜드 호핑투어 (123개 섬 비경 감상)</td></tr>
+                            <tr><td class="text-left py-1 px-3 align-top">▶ 바나나보트, 섬 간 짚라인 등 짜릿한 해양 액티비티 포함</td></tr>
+                            <tr><td class="text-left py-1 px-3 align-top">▶ 중식 (무인도에서 즐기는 해산물 및 육류 모둠 BBQ)</td></tr>
+                            <tr><td class="text-left py-1 px-3 align-top font-bold text-purple-700">★ 휴양지 리조트 마사지 90분 체험</td></tr>
+                            <tr><td class="text-left py-1 px-3 align-top">▶ 석식 및 루캅공원 나이트 투어 연장 (연박)</td></tr>
+                        </table>
+                    </td>
+                    <td class="text-center align-middle p-2 text-[9.5pt]">
+                        [조] 호텔식<br>[중] BBQ<br>[석] 호텔식
+                    </td>
+                </tr>
+                <!-- Day 4 -->
+                <tr class="border-b-2 border-slate-800">
+                    <td class="text-center align-middle font-bold bg-slate-50 border-r border-slate-800">4일차</td>
+                    <td class="text-center align-middle border-r border-slate-800">헌드레드<br>아일랜드<br>바기오</td>
+                    <td class="p-0 border-r border-slate-800 align-top">
+                        <table class="w-full h-full border-none m-0">
+                            <tr><td class="text-left py-2 px-3 align-top">▶ 조식 후 해발 1500m 고산도시 '바기오'로 이동 (약 1시간)</td></tr>
+                            <tr><td class="text-left py-1 px-3 align-top">▶ 바기오 관광: 탁 트인 절경의 마인스 뷰 덱 전망대 시찰 (2시간)</td></tr>
+                            <tr><td class="text-left py-1 px-3 align-top font-bold text-purple-700">★ 고산지대 힐링 마사지 90분 체험</td></tr>
+                            <tr><td class="text-left py-1 px-3 align-top">▶ 바기오 나이트 투어 (거대 SM몰 및 번햄파크 야시장)</td></tr>
+                            <tr><td class="text-left pb-2 pt-1 px-3 align-top">▶ 호텔 투숙 (아이온 호텔 동급)</td></tr>
+                        </table>
+                    </td>
+                    <td class="text-center align-middle p-2 text-[9.5pt]">
+                        [조] 호텔식<br>[중] 한식<br>[석] 뷔페
+                    </td>
+                </tr>
+                <!-- Day 5 & 6 -->
+                <tr>
+                    <td class="text-center align-middle font-bold bg-slate-50 border-r border-slate-800">5/6일차</td>
+                    <td class="text-center align-middle border-r border-slate-800">바기오<br>마닐라<br>인천</td>
+                    <td class="p-0 border-r border-slate-800 align-top">
+                        <table class="w-full h-full border-none m-0">
+                            <tr><td class="text-left py-2 px-3 align-top">▶ 핑크빛 바기오 대성당 관람 및 하산 (앙헬레스 경유 중식)</td></tr>
+                            <tr><td class="text-left py-1 px-3 align-top">▶ 마닐라 도심으로 이동하여 시내 명소 관광 및 쇼핑</td></tr>
+                            <tr><td class="text-left py-1 px-3 align-top font-bold text-purple-700">★ 라바스톤(화산석) 피날레 마사지 90분 체험</td></tr>
+                            <tr><td class="text-left py-1 px-3 align-top">▶ 석식 및 마닐라 랜드마크 오카다 분수쇼 관람 후 공항 이동</td></tr>
+                            <tr><td class="text-left py-1 px-3 align-top font-bold text-blue-600">[23:50] 마닐라 국제공항 출발 (OZ704)</td></tr>
+                            <tr><td class="text-left pb-2 pt-1 px-3 align-top font-bold text-blue-600">[05:00] (+1일) 인천 국제공항 도착</td></tr>
+                        </table>
+                    </td>
+                    <td class="text-center align-middle p-2 text-[9.5pt]">
+                        [조] 호텔식<br>[중] 한식<br>[석] 샤브샤브
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- 생존 회화 모달 (Modal) -->
+    <div id="phrase-modal" class="fixed inset-0 bg-black/90 z-[9999] hidden flex-col items-center justify-center p-6" onclick="closePhrase()">
+        <button class="absolute top-6 right-6 text-white text-4xl font-bold">&times;</button>
+        <div class="text-center space-y-6 max-w-lg w-full bg-slate-900 border border-slate-700 p-8 rounded-3xl relative" onclick="event.stopPropagation()">
+            <div id="modal-emoji" class="text-7xl mb-2"></div>
+            <div id="modal-kr" class="text-white text-xl font-bold opacity-80"></div>
+            <div class="bg-purple-600 w-12 h-1 mx-auto rounded-full my-4"></div>
+            <div id="modal-local" class="text-yellow-400 font-black text-3xl md:text-4xl leading-tight"></div>
+            <div id="modal-pron" class="text-purple-300 text-lg mt-2 font-medium bg-purple-900/50 inline-block px-4 py-1 rounded-full"></div>
+            <div class="mt-8 pt-6 border-t border-slate-700 text-slate-400 text-sm animate-pulse">
+                <i class="fa-solid fa-mobile-screen-button text-xl block mb-2"></i> 이 화면을 현지인에게 보여주세요
+            </div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>
+        // --- 1. D-Day 및 행사 상태 로직 ---
+        const startDate = new Date('2027-03-10T00:00:00+09:00');
+        const endDate = new Date('2027-03-15T23:59:59+09:00');
+        const now = new Date();
+        const badge = document.getElementById('d-day-badge');
+        const heroText = document.getElementById('hero-status-text');
+
+        if(now < startDate) {
+            const diff = Math.ceil((startDate - now) / (1000*60*60*24));
+            badge.textContent = `D-${diff}`;
+            badge.className = "bg-blue-600 text-white text-[10px] px-2 py-0.5 rounded-full font-bold animate-pulse";
+        } else if (now >= startDate && now <= endDate) {
+            const currentDay = Math.floor((now - startDate) / (1000*60*60*24)) + 1;
+            badge.textContent = `📍 ${currentDay}일차 진행중`;
+            badge.className = "bg-red-500 text-white text-[10px] px-2 py-0.5 rounded-full font-bold animate-pulse";
+            if(heroText) heroText.innerHTML = `현재 고객님의 <strong>${currentDay}일차</strong> 여정이 활기차게 진행되고 있습니다.`;
+        } else {
+            badge.textContent = "🏁 여정 종료";
+            badge.className = "bg-slate-500 text-white text-[10px] px-2 py-0.5 rounded-full font-bold";
+            if(heroText) heroText.innerHTML = "모든 여정이 종료되었습니다. 좋은 추억으로 오래 간직되길 바랍니다.";
+        }
+        badge.classList.remove('hidden');
+
+        // --- 2. 해외 위젯 (날씨, 환율, 물가) 로직 ---
+        // 2-1. 날씨 (Baguio)
+        fetch('https://api.open-meteo.com/v1/forecast?latitude=16.4164&longitude=120.5930&daily=weathercode,temperature_2m_max,temperature_2m_min&timezone=Asia%2FManila')
+            .then(res => res.json())
+            .then(data => {
+                const container = document.getElementById('weather-container');
+                container.innerHTML = '';
+                const wmoCodes = { 0:'☀️', 1:'🌤️', 2:'⛅', 3:'☁️', 45:'🌫️', 48:'🌫️', 51:'🌧️', 53:'🌧️', 55:'🌧️', 61:'🌧️', 63:'🌧️', 65:'🌧️', 80:'🌦️', 81:'🌦️', 82:'🌧️', 95:'🌩️' };
+                
+                data.daily.time.forEach((dateStr, idx) => {
+                    const code = data.daily.weathercode[idx];
+                    const max = Math.round(data.daily.temperature_2m_max[idx]);
+                    const min = Math.round(data.daily.temperature_2m_min[idx]);
+                    const emoji = wmoCodes[code] || '☁️';
+                    const d = new Date(dateStr);
+                    const dayName = ['일','월','화','수','목','금','토'][d.getDay()];
+                    
+                    container.innerHTML += `
+                        <div class="weather-item bg-white p-3 rounded-xl border border-slate-200 text-center shadow-sm min-w-[100px]">
+                            <div class="text-xs text-slate-500 font-bold mb-1">${d.getMonth()+1}/${d.getDate()}(${dayName})</div>
+                            <div class="text-3xl mb-1">${emoji}</div>
+                            <div class="text-sm font-bold text-slate-700">${max}° <span class="text-slate-400 text-xs">${min}°</span></div>
+                        </div>
+                    `;
+                });
+            }).catch(() => { document.getElementById('weather-container').innerHTML = '<div class="text-sm text-slate-400 p-4">날씨 정보를 불러올 수 없습니다.</div>'; });
+
+        // 2-2. 환율 및 물가
+        let krwPerPhp = 25; // Fallback rate
+        fetch('https://open.er-api.com/v6/latest/KRW')
+            .then(res => res.json())
+            .then(data => {
+                krwPerPhp = (1 / data.rates.PHP) * 1.015; // 송금 수수료 1.5% 반영
+                document.getElementById('exchange-rate').textContent = krwPerPhp.toFixed(2) + ' 원';
+                updateCalculator();
+
+                // 현지 물가 리스트 렌더링 (단가 약간 높여 오해 방지)
+                const items = [
+                    { name: '대형 쇼핑몰 스타벅스 아메리카노', php: 200, icon: '☕' },
+                    { name: '식당 산미구엘 맥주 (1병)', php: 100, icon: '🍺' },
+                    { name: '마사지 테라피스트 팁 (1시간)', php: 100, icon: '💵' },
+                    { name: '생수 (500ml 편의점 기준)', php: 35, icon: '💧' },
+                    { name: '지프니/트라이시클 기본요금', php: 25, icon: '🛺' }
+                ];
+                
+                const pCont = document.getElementById('price-container');
+                pCont.innerHTML = '';
+                items.forEach(item => {
+                    const krwPrice = Math.round(item.php * krwPerPhp);
+                    pCont.innerHTML += `
+                        <div class="flex items-center justify-between bg-white p-3 rounded-xl border border-slate-100 shadow-sm">
+                            <div class="flex items-center gap-3">
+                                <span class="text-2xl">${item.icon}</span>
+                                <span class="font-bold text-sm text-slate-700">${item.name}</span>
+                            </div>
+                            <div class="text-right">
+                                <div class="font-black text-orange-500 text-sm">${item.php} PHP</div>
+                                <div class="text-[10px] text-slate-400 font-medium">약 ${krwPrice.toLocaleString()}원</div>
+                            </div>
+                        </div>
+                    `;
+                });
+            });
+
+        // 실시간 환율 계산기 로직
+        function updateCalculator() {
+            const phpVal = Number(document.getElementById('php-input').value) || 0;
+            const krwVal = Math.round(phpVal * krwPerPhp);
+            document.getElementById('exchange-calc').textContent = krwVal.toLocaleString() + ' 원';
+        }
+
+        // --- 3. 생존 회화 (단일 함수) ---
+        function showPhrase(emoji, kr, local, pron) {
+            document.getElementById('modal-emoji').textContent = emoji;
+            document.getElementById('modal-kr').textContent = kr;
+            document.getElementById('modal-local').textContent = local;
+            document.getElementById('modal-pron').textContent = `"${pron}"`;
+            document.getElementById('phrase-modal').style.display = 'flex';
+        }
+        function closePhrase() { document.getElementById('phrase-modal').style.display = 'none'; }
+
+        // --- 4. 탭 전환 기능 ---
+        function openTab(evt, tabId){
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active','bg-blue-600','text-white','border-blue-600','shadow-md');
+                btn.classList.add('bg-white','text-slate-500','border-slate-200');
+            });
+            document.getElementById(tabId)?.classList.remove('hidden');
+            if(evt) {
+                evt.currentTarget.classList.add('active','bg-blue-600','text-white','border-blue-600','shadow-md');
+                evt.currentTarget.classList.remove('bg-white','text-slate-500','border-slate-200');
+            }
+        }
+
+        // --- 5. 지도 기능 (스마트가이드북 지도 5원칙 엄수) ---
+        // 국제선(ICN)을 제외하고 현지 동선만 표기하도록 수정 완료
+        let map;
+        let layerGroup;
+        
+        const spots = {
+            mnl: { coords: [14.5085, 121.0123], name: "마닐라 국제공항", icon: "🛬" },
+            angeles: { coords: [15.1449, 120.5887], name: "앙헬레스 (위더스호텔)", icon: "🏨" },
+            hundred: { coords: [16.2023, 120.0253], name: "헌드레드 아일랜드", icon: "🏝️" },
+            baguio: { coords: [16.4164, 120.5930], name: "바기오 고산도시", icon: "⛰️" }
+        };
+
+        const routes = {
+            all: { points: ['mnl', 'angeles', 'hundred', 'baguio'],
+                   lines: [
+                       { latlngs: [spots.mnl.coords, spots.angeles.coords, spots.hundred.coords], color: '#3b82f6' },
+                       { latlngs: [spots.hundred.coords, spots.baguio.coords], color: '#a855f7' },
+                       { latlngs: [spots.baguio.coords, spots.angeles.coords, spots.mnl.coords], color: '#f59e0b' }
+                   ]
+            },
+            day1: { points: ['mnl', 'angeles'], lines: [{ latlngs: [spots.mnl.coords, spots.angeles.coords], color: '#3b82f6' }] },
+            day2: { points: ['angeles', 'hundred'], lines: [{ latlngs: [spots.angeles.coords, spots.hundred.coords], color: '#3b82f6' }] },
+            day3: { points: ['hundred'], lines: [] },
+            day4: { points: ['hundred', 'baguio', 'angeles', 'mnl'], lines: [{ latlngs: [spots.hundred.coords, spots.baguio.coords, spots.angeles.coords, spots.mnl.coords], color: '#a855f7' }] }
+        };
+
+        function drawMap(routeKey) {
+            if (!map || !layerGroup) return;
+            // 원칙 4: 탭전환 시 clearLayers 선행
+            layerGroup.clearLayers();
+            const routeData = routes[routeKey];
+            
+            // Draw Polylines with Animation (원칙 3) - 애니메이션 속도를 6초로 늦춤
+            routeData.lines.forEach((lineDef) => {
+                const polyline = L.polyline(lineDef.latlngs, { color: lineDef.color, weight: 4, opacity: 0.8 }).addTo(layerGroup);
+                setTimeout(() => {
+                    const path = polyline.getElement();
+                    if (path) {
+                        const length = path.getTotalLength();
+                        path.style.transition = 'none';
+                        path.style.strokeDasharray = length + ' ' + length;
+                        path.style.strokeDashoffset = length;
+                        path.getBoundingClientRect(); // Reflow 강제
+                        path.style.transition = 'stroke-dashoffset 6s ease-in-out';
+                        path.style.strokeDashoffset = '0';
+                    }
+                }, 50);
+            });
+
+            // Draw Markers (원칙 1, 5)
+            let currentBounds = L.latLngBounds();
+            routeData.points.forEach((key, index) => {
+                const spot = spots[key];
+                const icon = L.divIcon({
+                    className: '',
+                    html: `<div style="font-size:24px; animation: popIn 0.5s forwards; animation-delay: ${index * 0.5}s; transform: scale(0); opacity: 0; text-shadow: 0 2px 4px rgba(0,0,0,0.3);">${spot.icon}</div>`,
+                    iconSize: [30, 30], iconAnchor: [15, 15]
+                });
+                const marker = L.marker(spot.coords, {icon: icon}).addTo(layerGroup);
+                marker.bindTooltip(spot.name, {direction: 'top', offset: [0, -10]});
+                currentBounds.extend(spot.coords);
+            });
+
+            // Fit Bounds & Stabilization (원칙 2)
+            if(routeData.points.length > 0) {
+                map.fitBounds(currentBounds, { padding: [70, 70], maxZoom: 9 });
+                setTimeout(() => { map.invalidateSize(); }, 300);
+            }
+        }
+
+        function changeMapRoute(dayKey) {
+            document.querySelectorAll('.map-btn').forEach(btn => {
+                btn.classList.remove('active', 'bg-slate-800', 'text-white', 'shadow-md');
+                btn.classList.add('bg-white', 'text-slate-600');
+            });
+            const clickedBtn = document.querySelector(`.map-btn[onclick="changeMapRoute('${dayKey}')"]`);
+            if(clickedBtn){
+                clickedBtn.classList.add('active', 'bg-slate-800', 'text-white', 'shadow-md');
+                clickedBtn.classList.remove('bg-white', 'text-slate-600');
+            }
+            drawMap(dayKey);
+        }
+
+        function initMap(){
+            if(window.L && !map) {
+                map = L.map('map', { scrollWheelZoom: false });
+                L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+                    attribution: '&copy; OpenStreetMap', maxZoom: 18
+                }).addTo(map);
+                layerGroup = L.layerGroup().addTo(map);
+                drawMap('all');
+            }
+        }
+
+        const mapObserver = new IntersectionObserver((entries)=>{
+            if(entries[0].isIntersecting) { initMap(); mapObserver.disconnect(); }
+        }, { threshold: 0.1 });
+        mapObserver.observe(document.getElementById('map-section'));
+
+        // --- 6. 준비물 체크리스트 & 메모장 기능 ---
+        const checkItems = [
+            '여권 (만료일 6개월 이상 필수 확인)', 
+            '항공권 E-Ticket 및 영문 백신접종증명서', 
+            '여름옷 및 ★얇은 가디건/바람막이 (바기오용)', 
+            '수영복/래쉬가드 및 아쿠아슈즈 (호핑투어)', 
+            '선크림, 선글라스, 모자, 모기 기피제', 
+            '개인 상비약 (지사제, 소화제, 멀미약 등)', 
+            '어댑터 (돼지코 필요) 및 보조배터리', 
+            '스마트폰 방수팩 및 작은 우산/우비'
+        ];
+        
+        // 체크리스트 렌더링
+        const CHECK_KEY = 'tourmaker_baguio_checklist';
+        const savedCheck = JSON.parse(localStorage.getItem(CHECK_KEY) || '{}');
+        const cCont = document.getElementById('checklist-container');
+        
+        checkItems.forEach((item, idx) => {
+            const isChecked = savedCheck[`chk_${idx}`] ? 'checked' : '';
+            cCont.innerHTML += `
+                <label class="flex items-center gap-3 bg-white px-4 py-3 rounded-xl border border-slate-200 cursor-pointer hover:bg-blue-50 transition">
+                    <input type="checkbox" id="chk_${idx}" ${isChecked} class="w-5 h-5 text-blue-600 rounded border-slate-300 focus:ring-blue-500" onchange="saveChecklist()">
+                    <span class="text-slate-700 text-sm font-medium">${item}</span>
+                </label>
+            `;
+        });
+
+        function saveChecklist() {
+            const currentCheck = {};
+            checkItems.forEach((_, idx) => {
+                currentCheck[`chk_${idx}`] = document.getElementById(`chk_${idx}`).checked;
+            });
+            localStorage.setItem(CHECK_KEY, JSON.stringify(currentCheck));
+        }
+
+        // 여행 메모장 로직
+        const MEMO_KEY = 'tourmaker_baguio_memo';
+        const memoEl = document.getElementById('travel-memo');
+        memoEl.value = localStorage.getItem(MEMO_KEY) || '';
+        
+        memoEl.addEventListener('input', () => {
+            localStorage.setItem(MEMO_KEY, memoEl.value);
+        });
+
+        function clearMemo() {
+            if(confirm("메모하신 내용을 모두 지우시겠습니까?")) {
+                memoEl.value = '';
+                localStorage.removeItem(MEMO_KEY);
+            }
+        }
+
+        // --- 7. 공유하기 기능 ---
+        function shareLink(){
+            if (navigator.share) {
+                navigator.share({ title: '[초대장] 필리핀 힐링 투어', text: '일정표와 여행 정보를 확인하세요.', url: window.location.href }).catch(()=>{});
+            } else {
+                navigator.clipboard?.writeText(window.location.href).then(()=>alert('일정표 주소가 복사되었습니다.'));
+            }
+        }
+    </script>
+</body>
+</html>
