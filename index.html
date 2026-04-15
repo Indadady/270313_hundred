@@ -65,7 +65,7 @@
         .custom-scrollbar::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
         .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
 
-        /* Print Styles (투어메이커 표준 양식) */
+        /* Print Styles (투어메이커 표준 양식 최적화) */
         @media print {
             @page { size: A4 portrait; margin: 12mm 10mm; } 
             body { background-color: #ffffff !important; font-size: 10pt; color: #1e293b !important; }
@@ -77,50 +77,50 @@
             
             .print-page-container { width: 100%; margin: 0; padding: 0; }
             
-            .print-header { display: flex; justify-content: space-between; align-items: flex-end; border-bottom: 2px solid #004098; padding-bottom: 10px; margin-bottom: 20px; }
-            .print-header .logo img { height: 35px; object-fit: contain; }
-            .print-header .doc-info { text-align: right; font-size: 12px; color: #475569; }
+            .print-header { display: flex; justify-content: space-between; align-items: flex-end; border-bottom: 2px solid #004098; padding-bottom: 8px; margin-bottom: 15px; }
+            .print-header .logo img { height: 32px; object-fit: contain; }
+            .print-header .doc-info { text-align: right; font-size: 11px; color: #475569; }
             
-            .print-title-section { text-align: center; margin-bottom: 20px; }
-            .print-title-section h1 { font-size: 22px; font-weight: 700; color: #0f172a; letter-spacing: -0.5px; margin:0;}
+            .print-title-section { text-align: center; margin-bottom: 15px; }
+            .print-title-section h1 { font-size: 20px; font-weight: 700; color: #0f172a; letter-spacing: -0.5px; margin:0;}
             
-            .print-overview-slim { display: flex; justify-content: space-between; background-color: #f8fafc; border: 1px solid #94a3b8; border-radius: 6px; padding: 10px 15px; margin-bottom: 20px; font-size: 13px; }
+            .print-overview-slim { display: flex; justify-content: space-between; background-color: #f8fafc; border: 1px solid #94a3b8; border-radius: 6px; padding: 8px 12px; margin-bottom: 15px; font-size: 12.5px; }
             .print-overview-slim div { display: flex; gap: 8px; }
             .print-overview-slim .label { font-weight: 700; color: #004098; }
             
-            .print-table { width: 100%; border-collapse: collapse; margin-bottom: 20px; font-size: 12px; table-layout: fixed; border: 2px solid #1e293b; }
-            .print-table th, .print-table td { border: 1px solid #1e293b; padding: 10px 12px; vertical-align: top; page-break-inside: avoid; }
-            .print-table th { background-color: #f8fafc !important; color: #1e293b; font-weight: 700; text-align: center; font-size: 13px; border-bottom: 2px solid #1e293b;}
+            /* 테이블 열 비율 조정 (공백 최소화) */
+            .print-table { width: 100%; border-collapse: collapse; margin-bottom: 15px; font-size: 12px; table-layout: fixed; border: 2px solid #1e293b; }
+            .print-table th, .print-table td { border: 1px solid #1e293b; padding: 6px 10px; vertical-align: top; page-break-inside: avoid; }
+            .print-table th { background-color: #f8fafc !important; color: #1e293b; font-weight: 700; text-align: center; font-size: 12.5px; border-bottom: 2px solid #1e293b;}
             
-            .print-col-date { width: 12%; text-align: center; font-weight: 700; vertical-align: middle; background-color: #f8fafc; }
-            .print-col-desc { width: 72%; }
-            .print-col-meal { width: 16%; text-align: center; vertical-align: middle; }
+            .print-col-date { width: 11%; text-align: center; font-weight: 700; vertical-align: middle; background-color: #f8fafc; }
+            .print-col-desc { width: 75%; }
+            .print-col-meal { width: 14%; text-align: center; vertical-align: middle; }
             
             .print-day-divider td { border-top: 2px solid #1e293b !important; }
             
-            .print-time-flow { margin-bottom: 6px; font-weight: 500; font-size: 12.5px; }
-            .print-time-tag { display: inline-block; color: #004098; font-weight: 700; margin-right: 5px; width: 40px;}
+            .print-time-flow { margin-bottom: 4px; font-weight: 500; font-size: 12px; }
+            .print-time-tag { display: inline-block; color: #004098; font-weight: 700; margin-right: 5px; width: 38px;}
             .print-highlight { font-weight: 700; color: #0f172a; }
             
-            .print-desc-list { list-style: none; margin: 6px 0 12px 0; padding-left: 5px; font-size: 12px; }
-            .print-desc-list li { position: relative; padding-left: 12px; margin-bottom: 4px; line-height: 1.5; }
+            .print-desc-list { list-style: none; margin: 4px 0 8px 0; padding-left: 5px; font-size: 12px; }
+            .print-desc-list li { position: relative; padding-left: 12px; margin-bottom: 3px; line-height: 1.4; word-break: keep-all; }
             .print-desc-list li::before { content: '■'; font-size: 7px; position: absolute; left: 0; top: 4px; color: #004098; }
             
-            .print-hotel-divider { border: 0; border-top: 1px dashed #94a3b8; margin: 12px 0 8px 0; }
-            .print-hotel-info { font-size: 12.5px; color: #0f172a; font-weight:700;}
+            .print-hotel-divider { border: 0; border-top: 1px dashed #94a3b8; margin: 8px 0 6px 0; }
+            .print-hotel-info { font-size: 12px; color: #0f172a; font-weight:700;}
             
-            .print-meal-wrapper { display: flex; flex-direction: column; gap: 10px; justify-content: center; height: 100%; text-align: left; padding-left: 5px; }
-            .print-meal-simple { display: flex; align-items: flex-start; line-height: 1.3; font-size: 12.5px;}
-            .print-meal-simple strong { color: #004098; margin-right: 4px; width: 18px; flex-shrink: 0; }
-            .print-meal-menu { display: flex; flex-direction: column; }
-            .print-meal-sub { font-size: 11px; margin-top: 2px; color: #475569; }
+            .print-meal-wrapper { display: flex; flex-direction: column; gap: 8px; justify-content: center; height: 100%; text-align: left; padding-left: 5px; }
+            .print-meal-simple { display: flex; align-items: flex-start; line-height: 1.3; font-size: 12px;}
+            .print-meal-simple strong { color: #004098; margin-right: 4px; width: 16px; flex-shrink: 0; }
+            .print-meal-menu { display: flex; flex-direction: column; word-break: keep-all;}
+            .print-meal-sub { font-size: 10.5px; margin-top: 2px; color: #475569; }
             
-            .print-remarks { font-size: 11px; color: #475569; text-align: right; font-weight: 500; margin-bottom: 15px; }
+            .print-remarks { font-size: 11px; color: #475569; text-align: right; font-weight: 500; margin-bottom: 10px; }
             
-            .print-footer-box { margin-top: 15px; padding-top: 15px; border-top: 1px solid #e2e8f0; display: flex; justify-content: space-between; align-items: flex-end; }
+            .print-footer-box { margin-top: 10px; padding-top: 10px; border-top: 1px solid #e2e8f0; display: flex; justify-content: flex-end; align-items: center; }
             .print-manager-info { text-align: left; border-left: 3px solid #004098; padding-left: 10px; }
-            .print-manager-info .names { color: #0f172a; font-weight: 700; font-size: 13px; }
-            .print-footer-logo img { height: 35px; object-fit: contain; }
+            .print-manager-info .names { color: #0f172a; font-weight: 700; font-size: 12.5px; }
         }
     </style>
 </head>
@@ -980,9 +980,6 @@
                 <div class="print-manager-info">
                     <div class="names">담당 및 진행 : 대표 이재명 010-9443-7881</div>
                     <div style="font-size: 11px; color:#64748b; margin-top: 4px;">[System Powered by TOURMAKER]</div>
-                </div>
-                <div class="print-footer-logo">
-                    <img src="https://blogger.googleusercontent.com/img/a/AVvXsEitI-Z-hD82keOJ1AqHw-VTZjpw2U-O5UjtV9h3zblyG0wjsVfBWe9X9o0Q_Spctrt7krkd9qXO0xKTmGJLw4gyMZrRqpshKMFttnyx6OcC8-IGz3XLUZpGQOnRqVdol8jz5HuoDLqsEifnVRhcjUJHm13Sz8JrX9aPswMNUwZPvGtJEnQjhc2PiXlo-B8" alt="직인 로고">
                 </div>
             </div>
 
