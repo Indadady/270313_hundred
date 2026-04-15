@@ -65,18 +65,62 @@
         .custom-scrollbar::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
         .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
 
-        /* Print Styles */
+        /* Print Styles (투어메이커 표준 양식) */
         @media print {
-            @page { size: A4 portrait; margin: 15mm 12mm; } 
-            body { background-color: white !important; font-size: 10pt; color: black !important; }
+            @page { size: A4 portrait; margin: 12mm 10mm; } 
+            body { background-color: #ffffff !important; font-size: 10pt; color: #1e293b !important; }
             a[href]:after { content: none !important; }
             * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
-            table { width: 100%; border-collapse: collapse; border: 2px solid #1e293b; }
-            #print-area > table > thead > tr > th { padding: 6px 4px; border: 1px solid #1e293b; background-color: #f8fafc !important; }
-            #print-area > table > tbody > tr > td { border: 1px solid #1e293b; border-bottom: 2px solid #1e293b !important; }
-            #print-area table table td { border: none !important; padding: 0; }
-            #print-area table table td:first-child { border-right: 1px solid #1e293b !important; }
-            .print-hidden { display: none !important; }
+            
+            .print-hidden, .print\:hidden { display: none !important; }
+            #print-area { display: block !important; width: 100%; color: #1e293b; font-family: 'Noto Sans KR', sans-serif; }
+            
+            .print-page-container { width: 100%; margin: 0; padding: 0; }
+            
+            .print-header { display: flex; justify-content: space-between; align-items: flex-end; border-bottom: 2px solid #004098; padding-bottom: 10px; margin-bottom: 20px; }
+            .print-header .logo img { height: 35px; object-fit: contain; }
+            .print-header .doc-info { text-align: right; font-size: 12px; color: #475569; }
+            
+            .print-title-section { text-align: center; margin-bottom: 20px; }
+            .print-title-section h1 { font-size: 22px; font-weight: 700; color: #0f172a; letter-spacing: -0.5px; margin:0;}
+            
+            .print-overview-slim { display: flex; justify-content: space-between; background-color: #f8fafc; border: 1px solid #94a3b8; border-radius: 6px; padding: 10px 15px; margin-bottom: 20px; font-size: 13px; }
+            .print-overview-slim div { display: flex; gap: 8px; }
+            .print-overview-slim .label { font-weight: 700; color: #004098; }
+            
+            .print-table { width: 100%; border-collapse: collapse; margin-bottom: 20px; font-size: 12px; table-layout: fixed; border: 2px solid #1e293b; }
+            .print-table th, .print-table td { border: 1px solid #1e293b; padding: 10px 12px; vertical-align: top; page-break-inside: avoid; }
+            .print-table th { background-color: #f8fafc !important; color: #1e293b; font-weight: 700; text-align: center; font-size: 13px; border-bottom: 2px solid #1e293b;}
+            
+            .print-col-date { width: 12%; text-align: center; font-weight: 700; vertical-align: middle; background-color: #f8fafc; }
+            .print-col-desc { width: 72%; }
+            .print-col-meal { width: 16%; text-align: center; vertical-align: middle; }
+            
+            .print-day-divider td { border-top: 2px solid #1e293b !important; }
+            
+            .print-time-flow { margin-bottom: 6px; font-weight: 500; font-size: 12.5px; }
+            .print-time-tag { display: inline-block; color: #004098; font-weight: 700; margin-right: 5px; width: 40px;}
+            .print-highlight { font-weight: 700; color: #0f172a; }
+            
+            .print-desc-list { list-style: none; margin: 6px 0 12px 0; padding-left: 5px; font-size: 12px; }
+            .print-desc-list li { position: relative; padding-left: 12px; margin-bottom: 4px; line-height: 1.5; }
+            .print-desc-list li::before { content: '■'; font-size: 7px; position: absolute; left: 0; top: 4px; color: #004098; }
+            
+            .print-hotel-divider { border: 0; border-top: 1px dashed #94a3b8; margin: 12px 0 8px 0; }
+            .print-hotel-info { font-size: 12.5px; color: #0f172a; font-weight:700;}
+            
+            .print-meal-wrapper { display: flex; flex-direction: column; gap: 10px; justify-content: center; height: 100%; text-align: left; padding-left: 5px; }
+            .print-meal-simple { display: flex; align-items: flex-start; line-height: 1.3; font-size: 12.5px;}
+            .print-meal-simple strong { color: #004098; margin-right: 4px; width: 18px; flex-shrink: 0; }
+            .print-meal-menu { display: flex; flex-direction: column; }
+            .print-meal-sub { font-size: 11px; margin-top: 2px; color: #475569; }
+            
+            .print-remarks { font-size: 11px; color: #475569; text-align: right; font-weight: 500; margin-bottom: 15px; }
+            
+            .print-footer-box { margin-top: 15px; padding-top: 15px; border-top: 1px solid #e2e8f0; display: flex; justify-content: space-between; align-items: flex-end; }
+            .print-manager-info { text-align: left; border-left: 3px solid #004098; padding-left: 10px; }
+            .print-manager-info .names { color: #0f172a; font-weight: 700; font-size: 13px; }
+            .print-footer-logo img { height: 35px; object-fit: contain; }
         }
     </style>
 </head>
@@ -766,120 +810,183 @@
 
     </div>
 
-    <!-- 🖨️ Print-Only Area -->
+    <!-- 🖨️ Print-Only Area (표준 일정표 양식 100% 반영) -->
     <div id="print-area" class="hidden print:block w-full bg-white text-black py-2">
-        <h1 class="text-2xl font-black text-center mb-5 pb-3 border-b-2 border-slate-800" style="font-family: 'Nanum Myeongjo', serif;">
-            마닐라/바기오/헌드레드 아일랜드 4박 6일 일정표 (Everyday Massage Day)
-        </h1>
-        <div class="flex justify-between items-end mb-3 font-bold text-[10.5pt]">
-            <div class="text-slate-800">
-                <p>일 정 : 2027.03.13(토) ~ 03.18(목) [4박 6일]</p>
-                <p class="mt-1">항 공 : 아시아나항공 (OZ701/OZ704)</p>
+        <div class="print-page-container">
+            <!-- Header -->
+            <div class="print-header">
+                <div class="logo">
+                    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgHfgIX70O5k6Anuo0UgALIdaG9jSga9auHu3uyz0uEirylGPAJnjN_qQbvEGMUvPqUQf_g9FMNUHRxlDcUBf4vZ3Mpy4TnA9WxbmzWYK11gt2zuy_Irl4wctNFjcjLyPo0GPXV792o_J7L9guRMuDfeC1gy7USwywjYbECZgzcsHybuGRRAXAnO1eNmP8/s320/logo.png" alt="투어메이커 로고">
+                </div>
+                <div class="doc-info">
+                    문서번호: TM-270313-PH
+                </div>
             </div>
-            <div class="text-right text-slate-800">
-                <p>진행: 투어메이커</p>
-            </div>
-        </div>
 
-        <table class="w-full text-[10.5pt] border-collapse border-2 border-slate-800">
-            <thead>
-                <tr class="bg-slate-100 text-slate-800 border-b border-slate-800">
-                    <th class="border-r border-slate-800 py-2 w-[8%] text-center font-bold">일자</th>
-                    <th class="border-r border-slate-800 py-2 w-[12%] text-center font-bold">지역/교통</th>
-                    <th class="border-r border-slate-800 py-2 w-[70%] text-center font-bold">주요 일정 요약</th>
-                    <th class="py-2 w-[10%] text-center font-bold">식사</th>
-                </tr>
-            </thead>
-            <tbody>
-                <!-- Day 1 -->
-                <tr class="border-b-2 border-slate-800">
-                    <td class="text-center align-middle font-bold bg-slate-50 border-r border-slate-800">1일차</td>
-                    <td class="text-center align-middle border-r border-slate-800">인천<br>마닐라<br>앙헬레스</td>
-                    <td class="p-0 border-r border-slate-800 align-top">
-                        <table class="w-full h-full border-none m-0">
-                            <tr><td class="text-left py-2 px-3 align-top font-bold text-blue-600">[07:35] 인천 국제공항 출발 (OZ701)</td></tr>
-                            <tr><td class="text-left py-1 px-3 align-top font-bold text-blue-600">[10:40] 마닐라 국제공항 도착 및 가이드 미팅</td></tr>
-                            <tr><td class="text-left py-1 px-3 align-top">▶ 김대건 성당 방문 참배 및 관광 (약 1시간 소요)</td></tr>
-                            <tr><td class="text-left py-1 px-3 align-top">▶ 중식 후 앙헬레스로 차량 이동 (약 30분)</td></tr>
-                            <tr><td class="text-left py-1 px-3 align-top font-bold text-purple-700">★ 전신 릴렉싱 마사지 90분 체험</td></tr>
-                            <tr><td class="text-left pb-2 pt-1 px-3 align-top">▶ 호텔 체크인 및 환영 석식 (위더스 호텔 동급)</td></tr>
-                        </table>
-                    </td>
-                    <td class="text-center align-middle p-2 text-[9.5pt]">
-                        [조] 기내식<br>[중] 현지식<br>[석] 삼겹살
-                    </td>
-                </tr>
-                <!-- Day 2 -->
-                <tr class="border-b-2 border-slate-800">
-                    <td class="text-center align-middle font-bold bg-slate-50 border-r border-slate-800">2일차</td>
-                    <td class="text-center align-middle border-r border-slate-800">앙헬레스<br>헌드레드<br>아일랜드</td>
-                    <td class="p-0 border-r border-slate-800 align-top">
-                        <table class="w-full h-full border-none m-0">
-                            <tr><td class="text-left py-2 px-3 align-top">▶ 조식 후 클락 박물관 관람 (미군기지 및 화산 역사 시찰)</td></tr>
-                            <tr><td class="text-left py-1 px-3 align-top">▶ 중식 (필리핀 국민 브랜드 졸리비 특식) 후 헌드레드 아일랜드 이동</td></tr>
-                            <tr><td class="text-left py-1 px-3 align-top font-bold text-purple-700">★ 리조트 마사지 90분 체험</td></tr>
-                            <tr><td class="text-left py-1 px-3 align-top">▶ 석식 및 루캅공원 해변 나이트 투어 (노천카페 산책)</td></tr>
-                            <tr><td class="text-left pb-2 pt-1 px-3 align-top">▶ 호텔 휴식 (프록시 호텔 동급)</td></tr>
-                        </table>
-                    </td>
-                    <td class="text-center align-middle p-2 text-[9.5pt]">
-                        [조] 호텔식<br>[중] 현지식<br>[석] 현지식
-                    </td>
-                </tr>
-                <!-- Day 3 -->
-                <tr class="border-b-2 border-slate-800">
-                    <td class="text-center align-middle font-bold bg-slate-50 border-r border-slate-800">3일차</td>
-                    <td class="text-center align-middle border-r border-slate-800">헌드레드<br>아일랜드</td>
-                    <td class="p-0 border-r border-slate-800 align-top">
-                        <table class="w-full h-full border-none m-0">
-                            <tr><td class="text-left py-2 px-3 align-top font-bold text-blue-600">▶ 헌드레드 아일랜드 호핑투어 (123개 섬 비경 감상)</td></tr>
-                            <tr><td class="text-left py-1 px-3 align-top">▶ 바나나보트, 섬 간 짚라인 등 짜릿한 해양 액티비티 포함</td></tr>
-                            <tr><td class="text-left py-1 px-3 align-top">▶ 중식 (무인도에서 즐기는 해산물 및 육류 모둠 BBQ)</td></tr>
-                            <tr><td class="text-left py-1 px-3 align-top font-bold text-purple-700">★ 휴양지 리조트 마사지 90분 체험</td></tr>
-                            <tr><td class="text-left py-1 px-3 align-top">▶ 석식 및 루캅공원 나이트 투어 연장 (연박)</td></tr>
-                        </table>
-                    </td>
-                    <td class="text-center align-middle p-2 text-[9.5pt]">
-                        [조] 호텔식<br>[중] BBQ<br>[석] 호텔식
-                    </td>
-                </tr>
-                <!-- Day 4 -->
-                <tr class="border-b-2 border-slate-800">
-                    <td class="text-center align-middle font-bold bg-slate-50 border-r border-slate-800">4일차</td>
-                    <td class="text-center align-middle border-r border-slate-800">헌드레드<br>아일랜드<br>바기오</td>
-                    <td class="p-0 border-r border-slate-800 align-top">
-                        <table class="w-full h-full border-none m-0">
-                            <tr><td class="text-left py-2 px-3 align-top">▶ 조식 후 해발 1500m 고산도시 '바기오'로 이동 (약 1시간)</td></tr>
-                            <tr><td class="text-left py-1 px-3 align-top">▶ 바기오 관광: 탁 트인 절경의 마인스 뷰 덱 전망대 시찰 (2시간)</td></tr>
-                            <tr><td class="text-left py-1 px-3 align-top font-bold text-purple-700">★ 고산지대 힐링 마사지 90분 체험</td></tr>
-                            <tr><td class="text-left py-1 px-3 align-top">▶ 바기오 나이트 투어 (거대 SM몰 및 번햄파크 야시장)</td></tr>
-                            <tr><td class="text-left pb-2 pt-1 px-3 align-top">▶ 호텔 투숙 (아이온 호텔 동급)</td></tr>
-                        </table>
-                    </td>
-                    <td class="text-center align-middle p-2 text-[9.5pt]">
-                        [조] 호텔식<br>[중] 한식<br>[석] 뷔페
-                    </td>
-                </tr>
-                <!-- Day 5 & 6 -->
-                <tr>
-                    <td class="text-center align-middle font-bold bg-slate-50 border-r border-slate-800">5/6일차</td>
-                    <td class="text-center align-middle border-r border-slate-800">바기오<br>마닐라<br>인천</td>
-                    <td class="p-0 border-r border-slate-800 align-top">
-                        <table class="w-full h-full border-none m-0">
-                            <tr><td class="text-left py-2 px-3 align-top">▶ 핑크빛 바기오 대성당 관람 및 하산 (앙헬레스 경유 중식)</td></tr>
-                            <tr><td class="text-left py-1 px-3 align-top">▶ 마닐라 도심으로 이동하여 시내 명소 관광 및 쇼핑</td></tr>
-                            <tr><td class="text-left py-1 px-3 align-top font-bold text-purple-700">★ 라바스톤(화산석) 피날레 마사지 90분 체험</td></tr>
-                            <tr><td class="text-left py-1 px-3 align-top">▶ 석식 및 마닐라 랜드마크 오카다 분수쇼 관람 후 공항 이동</td></tr>
-                            <tr><td class="text-left py-1 px-3 align-top font-bold text-blue-600">[23:50] 마닐라 국제공항 출발 (OZ704)</td></tr>
-                            <tr><td class="text-left pb-2 pt-1 px-3 align-top font-bold text-blue-600">[05:00] (+1일) 인천 국제공항 도착</td></tr>
-                        </table>
-                    </td>
-                    <td class="text-center align-middle p-2 text-[9.5pt]">
-                        [조] 호텔식<br>[중] 한식<br>[석] 샤브샤브
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+            <!-- Title -->
+            <div class="print-title-section">
+                <h1>마닐라/바기오/헌드레드 아일랜드 4박 6일 투어</h1>
+            </div>
+
+            <!-- Slim Overview -->
+            <div class="print-overview-slim">
+                <div><span class="label">행사기간</span> 2027. 03. 13 (토) ~ 03. 18 (목)</div>
+                <div><span class="label">행사컨셉</span> Everyday Massage Day</div>
+                <div><span class="label">이용항공</span> 아시아나항공 (OZ701/OZ704)</div>
+            </div>
+
+            <!-- Itinerary Table -->
+            <table class="print-table">
+                <thead>
+                    <tr>
+                        <th class="print-col-date">일자</th>
+                        <th class="print-col-desc">상세 탐방 일정 및 동선 점검</th>
+                        <th class="print-col-meal">식사</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Day 1 -->
+                    <tr class="print-day-divider">
+                        <td class="print-col-date"><strong>1일차</strong><br>3/13 (토)</td>
+                        <td class="print-col-desc">
+                            <div class="print-time-flow"><span class="print-time-tag">07:35</span> 인천 국제공항 출발 (OZ701)</div>
+                            <div class="print-time-flow"><span class="print-time-tag">10:40</span> 마닐라 국제공항 도착 및 가이드 미팅</div>
+                            <ul class="print-desc-list">
+                                <li>[전용차량] 탑승 후 이동 및 일정 브리핑</li>
+                                <li>한국 최초 사제 <span class="print-highlight">김대건 성당</span> 참배 및 관광 (약 1시간 소요)</li>
+                                <li>중식 후 앙헬레스로 차량 이동 (약 30분)</li>
+                                <li><span style="font-weight: 700; color: #7e22ce;">★ 전신 릴렉싱 마사지 90분 체험</span></li>
+                                <li>일정 종료 후 호텔 체크인 및 환영 석식</li>
+                            </ul>
+                            <hr class="print-hotel-divider">
+                            <div class="print-hotel-info">🏨 호텔명 : 위더스 호텔 (클락/앙헬레스) 또는 동급</div>
+                        </td>
+                        <td class="print-col-meal">
+                            <div class="print-meal-wrapper">
+                                <div class="print-meal-simple"><strong>조:</strong><div class="print-meal-menu">기내식</div></div>
+                                <div class="print-meal-simple"><strong>중:</strong><div class="print-meal-menu">현지식<span class="print-meal-sub">(다래정)</span></div></div>
+                                <div class="print-meal-simple"><strong>석:</strong><div class="print-meal-menu">삼겹살</div></div>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <!-- Day 2 -->
+                    <tr class="print-day-divider">
+                        <td class="print-col-date"><strong>2일차</strong><br>3/14 (일)</td>
+                        <td class="print-col-desc">
+                            <div class="print-time-flow"><span class="print-time-tag">오전</span> 호텔 조식 후 체크아웃</div>
+                            <ul class="print-desc-list">
+                                <li><span class="print-highlight">클락 박물관 관람</span> (미군기지 및 화산 역사 시찰)</li>
+                                <li>국민 브랜드 <span class="print-highlight">졸리비</span> 스페셜 메뉴로 현지식 체험</li>
+                                <li>[전용차량] 헌드레드 아일랜드로 이동 (약 1시간 30분)</li>
+                                <li><span style="font-weight: 700; color: #7e22ce;">★ 리조트 힐링 마사지 90분 체험</span></li>
+                                <li>석식 후 <span class="print-highlight">루캅공원 해변 나이트 투어</span> (노천카페 산책)</li>
+                            </ul>
+                            <hr class="print-hotel-divider">
+                            <div class="print-hotel-info">🏨 호텔명 : 프록시 호텔 (알라미노스) 또는 동급</div>
+                        </td>
+                        <td class="print-col-meal">
+                            <div class="print-meal-wrapper">
+                                <div class="print-meal-simple"><strong>조:</strong><div class="print-meal-menu">호텔식</div></div>
+                                <div class="print-meal-simple"><strong>중:</strong><div class="print-meal-menu">졸리비</div></div>
+                                <div class="print-meal-simple"><strong>석:</strong><div class="print-meal-menu">현지식<span class="print-meal-sub">(Max's)</span></div></div>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <!-- Day 3 -->
+                    <tr class="print-day-divider">
+                        <td class="print-col-date"><strong>3일차</strong><br>3/15 (월)</td>
+                        <td class="print-col-desc">
+                            <div class="print-time-flow"><span class="print-time-tag">전일</span> 헌드레드 아일랜드 호핑투어 데이</div>
+                            <ul class="print-desc-list">
+                                <li>호텔 조식 후 선착장으로 이동</li>
+                                <li>방카 탑승하여 123개 섬 비경 <span class="print-highlight">호핑투어 및 스노클링</span></li>
+                                <li>가버너스 섬 전망대 감상, <span class="print-highlight">바나나보트 & 짚라인 액티비티</span></li>
+                                <li>무인도에서 즐기는 해산물 및 육류 모둠 BBQ 중식</li>
+                                <li><span style="font-weight: 700; color: #7e22ce;">★ 휴양지 리조트 마사지 90분 체험</span></li>
+                                <li>일정 종료 후 연박 휴식 및 나이트투어 연장</li>
+                            </ul>
+                            <hr class="print-hotel-divider">
+                            <div class="print-hotel-info">🏨 호텔명 : 프록시 호텔 (알라미노스) 연박</div>
+                        </td>
+                        <td class="print-col-meal">
+                            <div class="print-meal-wrapper">
+                                <div class="print-meal-simple"><strong>조:</strong><div class="print-meal-menu">리조트식</div></div>
+                                <div class="print-meal-simple"><strong>중:</strong><div class="print-meal-menu">모둠 BBQ</div></div>
+                                <div class="print-meal-simple"><strong>석:</strong><div class="print-meal-menu">호텔식</div></div>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <!-- Day 4 -->
+                    <tr class="print-day-divider">
+                        <td class="print-col-date"><strong>4일차</strong><br>3/16 (화)</td>
+                        <td class="print-col-desc">
+                            <div class="print-time-flow"><span class="print-time-tag">오전</span> 호텔 조식 후 체크아웃</div>
+                            <ul class="print-desc-list">
+                                <li>해발 1,500m 고산도시 <span class="print-highlight">바기오</span>로 산악 이동 (약 1시간)</li>
+                                <li>푸짐한 고기 뷔페 점심식사 진행</li>
+                                <li>코르디예라 산맥의 절경 <span class="print-highlight">마인스 뷰 덱 전망대</span> 시찰 (2시간)</li>
+                                <li><span style="font-weight: 700; color: #7e22ce;">★ 고산지대 힐링 마사지 90분 체험</span></li>
+                                <li>현지 유명 철판구이 특식 통양(Tong Yang)에서 석식</li>
+                                <li>바기오 나이트 투어: <span class="print-highlight">거대 SM몰 및 번햄파크 야시장</span></li>
+                            </ul>
+                            <hr class="print-hotel-divider">
+                            <div class="print-hotel-info">🏨 호텔명 : 아이온 호텔 (바기오) 또는 동급</div>
+                        </td>
+                        <td class="print-col-meal">
+                            <div class="print-meal-wrapper">
+                                <div class="print-meal-simple"><strong>조:</strong><div class="print-meal-menu">리조트식</div></div>
+                                <div class="print-meal-simple"><strong>중:</strong><div class="print-meal-menu">한식</div></div>
+                                <div class="print-meal-simple"><strong>석:</strong><div class="print-meal-menu">특식뷔페<span class="print-meal-sub">(통양)</span></div></div>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <!-- Day 5/6 -->
+                    <tr class="print-day-divider">
+                        <td class="print-col-date"><strong>5/6일차</strong><br>3/17~18</td>
+                        <td class="print-col-desc">
+                            <div class="print-time-flow"><span class="print-time-tag">오전</span> 호텔 조식 후 체크아웃</div>
+                            <ul class="print-desc-list">
+                                <li>핑크빛 외벽의 <span class="print-highlight">바기오 대성당</span> 관람</li>
+                                <li>앙헬레스로 하산 후 한식으로 중식 진행</li>
+                                <li>마닐라 도심으로 이동 (약 2시간)하여 <span class="print-highlight">시내 명소 관광 및 쇼핑</span></li>
+                                <li><span style="font-weight: 700; color: #7e22ce;">★ 라바스톤(화산석) 피날레 마사지 90분 체험</span></li>
+                                <li>샤브샤브 석식 후 마닐라 랜드마크 <span class="print-highlight">오카다 분수쇼</span> 관람</li>
+                            </ul>
+                            <div class="print-time-flow" style="margin-top: 8px;"><span class="print-time-tag">23:50</span> 마닐라 국제공항 출발 (OZ704)</div>
+                            <div class="print-time-flow"><span class="print-time-tag">05:00</span> (+1일) 인천 국제공항 도착 후 해산</div>
+                        </td>
+                        <td class="print-col-meal">
+                            <div class="print-meal-wrapper">
+                                <div class="print-meal-simple"><strong>조:</strong><div class="print-meal-menu">호텔식</div></div>
+                                <div class="print-meal-simple"><strong>중:</strong><div class="print-meal-menu">한식</div></div>
+                                <div class="print-meal-simple"><strong>석:</strong><div class="print-meal-menu">샤브샤브</div></div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="print-remarks">
+                ※ 상기 일정은 항공기 연발착 및 현지 사정에 따라 다소 변경될 수 있습니다.<br>
+                ※ 전 일정 전용 차량 탑승 및 연수 전문 가이드가 동행합니다.
+            </div>
+
+            <!-- Footer -->
+            <div class="print-footer-box">
+                <div class="print-manager-info">
+                    <div class="names">담당 및 진행 : 대표 이재명 010-9443-7881</div>
+                    <div style="font-size: 11px; color:#64748b; margin-top: 4px;">[System Powered by TOURMAKER]</div>
+                </div>
+                <div class="print-footer-logo">
+                    <img src="https://blogger.googleusercontent.com/img/a/AVvXsEitI-Z-hD82keOJ1AqHw-VTZjpw2U-O5UjtV9h3zblyG0wjsVfBWe9X9o0Q_Spctrt7krkd9qXO0xKTmGJLw4gyMZrRqpshKMFttnyx6OcC8-IGz3XLUZpGQOnRqVdol8jz5HuoDLqsEifnVRhcjUJHm13Sz8JrX9aPswMNUwZPvGtJEnQjhc2PiXlo-B8" alt="직인 로고">
+                </div>
+            </div>
+
+        </div>
     </div>
 
     <!-- 생존 회화 모달 (Modal) -->
